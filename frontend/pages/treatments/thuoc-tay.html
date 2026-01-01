@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thuốc Tây | Hôm Nay Bệnh Gì</title>
+    <meta name="description" content="Tra cứu thông tin các loại thuốc tây theo bệnh" />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="icon" type="image/x-icon" href="../../assets/images/common/favicon.png">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .filter-section {
+            background: white;
+            padding: 25px;
+            margin: -30px auto 30px;
+            max-width: 800px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            color: #64748b;
+        }
+
+        .medicine-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        @media (max-width: 1024px) {
+            .medicine-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .medicine-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .medicine-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .medicine-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+        }
+
+        .medicine-card-header {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .medicine-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .medicine-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .medicine-title h3 {
+            margin: 0 0 5px;
+            font-size: 1.15rem;
+            color: #1e40af;
+        }
+
+        .medicine-card-body {
+            padding: 20px 25px 25px;
+        }
+
+        .medicine-card-body p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0 0 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .medicine-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .medicine-tag {
+            padding: 5px 12px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e2e8f0;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: #64748b;
+        }
+
+        .empty-state .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 10px 16px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        .page-btn.active {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .medicine-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-left">
+            <a href="../../index.html">
+                <img src="../../assets/images/common/541994741_24566699099664215_389644405058898715_n.png" alt="logo"
+                    class="logo" />
+            </a>
+            <div>
+                <p>Hôm nay</p>
+                <p>Bệnh gì</p>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="header-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor">
+                    <path
+                        d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
+                </svg>Nhóm 3
+            </div>
+            <div class="header-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor">
+                    <path
+                        d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+                </svg>ICT/DS/CS USTH
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Tìm Kiếm...">
+                <button id="searchButton" class="search-btn">Tìm Kiếm</button>
+                <div id="suggestions" class="suggest-box"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <ul class="nav-left">
+            <li><a href="../../index.html">Trang Chủ</a></li>
+            <li class="dropdown">
+                <a class="dropbtn" href="../benh.html">Bệnh</a>
+                <ul class="dropdown-menu">
+                    <li><a href="../benh.html">Tất Cả Bệnh</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropbtn active">Thuốc</a>
+                <ul class="dropdown-menu">
+                    <li><a href="thao-duoc.html">Thảo Dược</a></li>
+                    <li><a href="thuoc-tay.html" class="active">Thuốc Tây</a></li>
+                </ul>
+            </li>
+            <li><a href="../tai-lieu.html">Tài Liệu</a></li>
+            <li><a href="../ve-chung-toi.html">Về Chúng Tôi</a></li>
+        </ul>
+        <ul class="nav-right">
+            <li><a class="btn white" href="../auth/dang-nhap.html">Đăng Nhập</a></li>
+            <li><a class="btn white" href="../auth/dang-ky.html">Đăng Ký</a></li>
+        </ul>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <h1>💊 Thuốc Tây</h1>
+        <p>Tra cứu thông tin các loại thuốc tây với thành phần và hướng dẫn sử dụng</p>
+    </section>
+
+    <main class="container">
+        <!-- FILTER -->
+        <div class="filter-section">
+            <div class="search-box">
+                <input type="text" id="medicineSearch" placeholder="Tìm kiếm thuốc theo tên...">
+            </div>
+            <div class="stats-bar">
+                <span>Tìm thấy <strong id="resultCount">0</strong> thuốc</span>
+            </div>
+        </div>
+
+        <!-- MEDICINE LIST -->
+        <div id="medicineContainer">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Đang tải dữ liệu...</p>
+            </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="pagination" id="pagination"></div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">© <span id="year">2025</span> Hôm Nay Bệnh Gì</div>
+            <a class="footer__link" href="../ve-chung-toi.html">Về chúng tôi</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:3000/api'
+            : '/api';
+
+        let medicines = [], filteredMedicines = [], currentPage = 1;
+        const itemsPerPage = 12;
+
+        const container = document.getElementById('medicineContainer');
+        const resultCount = document.getElementById('resultCount');
+        const searchInput = document.getElementById('medicineSearch');
+        const pagination = document.getElementById('pagination');
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadMedicines();
+            searchInput.addEventListener('input', () => {
+                const term = searchInput.value.toLowerCase().trim();
+                filteredMedicines = medicines.filter(m => m.thuoc_tay.toLowerCase().includes(term));
+                currentPage = 1;
+                render();
+            });
+        });
+
+        async function loadMedicines() {
+            try {
+                const res = await fetch(`${API_BASE}/thuoctay?limit=1000`);
+                const data = await res.json();
+                medicines = data.data || [];
+                filteredMedicines = [...medicines];
+                render();
+            } catch (e) {
+                container.innerHTML = '<div class="empty-state"><div class="icon">⚠️</div><p>Không thể tải dữ liệu</p></div>';
+            }
+        }
+
+        function render() {
+            const start = (currentPage - 1) * itemsPerPage;
+            const items = filteredMedicines.slice(start, start + itemsPerPage);
+            resultCount.textContent = filteredMedicines.length;
+
+            if (!items.length) {
+                container.innerHTML = '<div class="empty-state"><div class="icon">💊</div><h3>Không tìm thấy</h3></div>';
+                pagination.innerHTML = '';
+                return;
+            }
+
+            container.innerHTML = `<div class="medicine-grid">${items.map(m => {
+                // Get image URL from database or use default
+                let imageUrl = '../../assets/images/diseases/20201005-thuoc-ha-sot-1-1630224382114476093444-0-0-450-720-crop-1630224387374982772766.webp';
+                if (m.image_url) {
+                    imageUrl = m.image_url.startsWith('http') ? m.image_url : `../../assets/images/medicines/${m.image_url}`;
+                }
+                return `
+                <a href="thuoc-tay-chi-tiet.html?id=${m.thuoctay_sk}" class="medicine-card">
+                    <div class="medicine-card-header">
+                        <div class="medicine-icon">
+                            <img src="${imageUrl}" alt="${escapeHtml(m.thuoc_tay)}" onerror="this.style.display='none'">
+                        </div>
+                        <div class="medicine-title"><h3>${escapeHtml(m.thuoc_tay)}</h3></div>
+                    </div>
+                    <div class="medicine-card-body">
+                        <p>${escapeHtml(m.hoat_chat || 'Xem chi tiết thành phần và cách dùng')}</p>
+                        <div class="medicine-tags">
+                            <span class="medicine-tag">Thuốc tây</span>
+                            ${m.biet_duoc ? '<span class="medicine-tag">Biệt dược</span>' : ''}
+                        </div>
+                    </div>
+                </a>
+            `}).join('')}</div>`;
+
+            const totalPages = Math.ceil(filteredMedicines.length / itemsPerPage);
+            if (totalPages <= 1) { pagination.innerHTML = ''; return; }
+
+            let html = `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">← Trước</button>`;
+            for (let i = 1; i <= Math.min(totalPages, 7); i++) {
+                html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+            }
+            html += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">Sau →</button>`;
+            pagination.innerHTML = html;
+        }
+
+        function goToPage(p) { currentPage = p; render(); window.scrollTo({ top: 400, behavior: 'smooth' }); }
+        window.goToPage = goToPage;
+
+        function escapeHtml(t) { if (!t) return ''; const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+    </script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <!-- Chatbot Widget -->
+    <link rel="stylesheet" href="../../css/chatbot-widget.css">
+    <script src="../../js/chatbot-widget.js" defer></script>
+</body>
+
+</html>

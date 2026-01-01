@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hồ Sơ Cá Nhân | Hôm Nay Bệnh Gì</title>
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="icon" type="image/x-icon" href="../../assets/images/common/favicon.png">
+    <style>
+        /* Page Background */
+        .profile-page-bg {
+            min-height: calc(100vh - 200px);
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+            padding: 40px 16px;
+        }
+
+        /* Profile Container */
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #0a991d, #2e8b57);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(10, 153, 29, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.03);
+            }
+        }
+
+        .avatar-icon {
+            font-size: 60px;
+            color: white;
+        }
+
+        .profile-header h1 {
+            font-size: 2rem;
+            color: #1b5e20;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header p {
+            color: #558b2f;
+            font-size: 1rem;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Section Title */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #e8f5e9;
+        }
+
+        .section-header .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0a991d, #4caf50);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 1.3rem;
+            color: #2e7d32;
+            margin: 0;
+        }
+
+        /* Form Styles */
+        .profile-form .field {
+            margin-bottom: 20px;
+        }
+
+        .profile-form .field span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #37474f;
+            font-size: 0.95rem;
+        }
+
+        .field-icon {
+            font-size: 16px;
+        }
+
+        .profile-form input,
+        .profile-form select,
+        .profile-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #fafafa;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .profile-form input:hover,
+        .profile-form select:hover,
+        .profile-form textarea:hover {
+            border-color: #a5d6a7;
+            background: #fff;
+        }
+
+        .profile-form input:focus,
+        .profile-form select:focus,
+        .profile-form textarea:focus {
+            outline: none;
+            border-color: #0a991d;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(10, 153, 29, 0.1);
+        }
+
+        .profile-form input:disabled {
+            background: linear-gradient(135deg, #f5f5f5, #eeeeee);
+            color: #757575;
+            cursor: not-allowed;
+            border-style: dashed;
+        }
+
+        .profile-form .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .readonly-note {
+            font-size: 11px;
+            color: #9e9e9e;
+            font-weight: 500;
+            background: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        /* BMI Display */
+        .bmi-display {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid #90caf9;
+        }
+
+        .bmi-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #1976d2, #42a5f5);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .bmi-info h4 {
+            margin: 0 0 4px;
+            color: #1565c0;
+            font-size: 0.9rem;
+        }
+
+        .bmi-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0d47a1;
+        }
+
+        /* Save Button */
+        .btn-save {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #0a991d, #2e7d32);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 24px rgba(10, 153, 29, 0.25);
+        }
+
+        .btn-save:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(10, 153, 29, 0.35);
+            background: linear-gradient(135deg, #088319, #1b5e20);
+        }
+
+        .btn-save:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-save:disabled {
+            background: linear-gradient(135deg, #bdbdbd, #9e9e9e);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-save .btn-icon {
+            font-size: 20px;
+        }
+
+        /* Messages */
+        .message {
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+            font-weight: 500;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.success {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            color: #1b5e20;
+            border: 1px solid #81c784;
+        }
+
+        .message.error {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e0e0e0;
+            border-top-color: #0a991d;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .profile-card {
+                padding: 24px;
+            }
+
+            .profile-form .row {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+            }
+
+            .avatar-icon {
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-left">
+            <a href="../../index.html">
+                <img src="../../assets/images/common/541994741_24566699099664215_389644405058898715_n.png" alt="logo"
+                    class="logo" />
+            </a>
+            <div>
+                <p>Hôm nay</p>
+                <p>Bệnh gì</p>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="header-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor">
+                    <path
+                        d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
+                </svg>Nhóm 3
+            </div>
+            <div class="header-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor">
+                    <path
+                        d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+                </svg>ICT/DS/CS USTH
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Tìm Kiếm...">
+                <button id="searchButton" class="search-btn">Tìm Kiếm</button>
+                <div id="suggestions" class="suggest-box"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <ul class="nav-left">
+            <li><a href="../../index.html">Trang Chủ</a></li>
+            <li class="dropdown">
+                <a class="dropbtn">Bệnh</a>
+                <ul class="dropdown-menu">
+                    <li><a href="../diseases/ho-hap.html">Tai Mũi Họng và Hô Hấp</a></li>
+                    <li><a href="../diseases/tieu-hoa.html">Tiêu Hóa</a></li>
+                    <li><a href="../diseases/mat.html">Mắt</a></li>
+                    <li><a href="../diseases/noi-tiet.html">Nội Tiết và Chuyển Hóa</a></li>
+                    <li><a href="../diseases/tim-mach.html">Máu và Tim Mạch</a></li>
+                    <li><a href="../diseases/tam-ly.html">Tâm Lý Học</a></li>
+                    <li><a href="../diseases/co-xuong-khop.html">Cơ Xương Khớp</a></li>
+                    <li><a href="../diseases/sinh-duc.html">Nam Khoa và Phụ Khoa</a></li>
+                    <li><a href="../diseases/da-lieu.html">Da Liễu</a></li>
+                    <li><a href="../diseases/rang-ham-mat.html">Răng Hàm Mặt</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropbtn">Thuốc</a>
+                <ul class="dropdown-menu">
+                    <li><a href="../treatments/thao-duoc.html">Thảo Dược</a></li>
+                    <li><a href="../treatments/thuoc-tay.html">Thuốc Tây</a></li>
+                </ul>
+            </li>
+            <li><a href="../tai-lieu.html">Tài Liệu Tham Khảo</a></li>
+            <li><a href="../ve-chung-toi.html">Về Chúng Tôi</a></li>
+        </ul>
+
+        <ul class="nav-right">
+            <li><a class="btn white" href="dang-nhap.html">Đăng Nhập</a></li>
+            <li><a class="btn white" href="dang-ky.html">Đăng Ký</a></li>
+        </ul>
+    </nav>
+
+    <!-- Profile Section -->
+    <main class="profile-page-bg">
+        <div class="profile-container">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <span class="avatar-icon">👤</span>
+                </div>
+                <h1>Hồ Sơ Cá Nhân</h1>
+                <p>Quản lý thông tin tài khoản của bạn</p>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="profile-card">
+                <div id="loadingMessage" class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Đang tải thông tin...</p>
+                </div>
+
+                <div id="messageBox" class="message"></div>
+
+                <form id="profileForm" class="profile-form" style="display: none;">
+                    <!-- Account Info Section -->
+                    <div class="section-header">
+                        <div class="icon">🔐</div>
+                        <h2>Thông tin tài khoản</h2>
+                    </div>
+
+                    <label class="field">
+                        <span><span class="field-icon">📧</span> Email <span class="readonly-note">Không thể thay
+                                đổi</span></span>
+                        <input type="email" id="email" disabled />
+                    </label>
+
+                    <label class="field">
+                        <span><span class="field-icon">👤</span> Tên đăng nhập <span class="readonly-note">Không thể
+                                thay đổi</span></span>
+                        <input type="text" id="username" disabled />
+                    </label>
+
+                    <label class="field">
+                        <span><span class="field-icon">📱</span> Số điện thoại</span>
+                        <input type="tel" id="phonenumber" placeholder="Nhập số điện thoại" inputmode="tel" />
+                    </label>
+
+                    <!-- Personal Info Section -->
+                    <div class="section-header" style="margin-top: 32px;">
+                        <div class="icon">📋</div>
+                        <h2>Thông tin cá nhân</h2>
+                    </div>
+
+                    <div class="row">
+                        <label class="field">
+                            <span><span class="field-icon">🎂</span> Tuổi</span>
+                            <input type="number" id="age" placeholder="Nhập tuổi" min="13" max="120" />
+                        </label>
+                        <label class="field">
+                            <span><span class="field-icon">⚧</span> Giới tính</span>
+                            <select id="gender">
+                                <option value="">-- Chọn --</option>
+                                <option value="male">Nam</option>
+                                <option value="female">Nữ</option>
+                                <option value="other">Khác</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="row">
+                        <label class="field">
+                            <span><span class="field-icon">📏</span> Chiều cao (cm)</span>
+                            <input type="number" id="height" placeholder="VD: 165" min="50" max="250" />
+                        </label>
+                        <label class="field">
+                            <span><span class="field-icon">⚖️</span> Cân nặng (kg)</span>
+                            <input type="number" id="weight" placeholder="VD: 60" min="10" max="300" />
+                        </label>
+                    </div>
+
+                    <!-- BMI Display -->
+                    <div class="bmi-display" id="bmiDisplay" style="display: none;">
+                        <div class="bmi-icon">💪</div>
+                        <div class="bmi-info">
+                            <h4>Chỉ số BMI của bạn</h4>
+                            <span class="bmi-value" id="bmiValue">--</span>
+                        </div>
+                    </div>
+
+                    <label class="field">
+                        <span><span class="field-icon">📍</span> Tỉnh/Thành phố</span>
+                        <select id="location">
+                            <option value="">-- Chọn tỉnh/thành phố --</option>
+                            <option value="An Giang">An Giang</option>
+                            <option value="Bắc Ninh">Bắc Ninh</option>
+                            <option value="Cà Mau">Cà Mau</option>
+                            <option value="Cao Bằng">Cao Bằng</option>
+                            <option value="Điện Biên">Điện Biên</option>
+                            <option value="Đắk Lắk">Đắk Lắk</option>
+                            <option value="Đồng Nai">Đồng Nai</option>
+                            <option value="Đồng Tháp">Đồng Tháp</option>
+                            <option value="Gia Lai">Gia Lai</option>
+                            <option value="Hà Tĩnh">Hà Tĩnh</option>
+                            <option value="Hưng Yên">Hưng Yên</option>
+                            <option value="Khánh Hoà">Khánh Hoà</option>
+                            <option value="Lai Châu">Lai Châu</option>
+                            <option value="Lạng Sơn">Lạng Sơn</option>
+                            <option value="Lào Cai">Lào Cai</option>
+                            <option value="Lâm Đồng">Lâm Đồng</option>
+                            <option value="Nghệ An">Nghệ An</option>
+                            <option value="Ninh Bình">Ninh Bình</option>
+                            <option value="Phú Thọ">Phú Thọ</option>
+                            <option value="Quảng Ngãi">Quảng Ngãi</option>
+                            <option value="Quảng Ninh">Quảng Ninh</option>
+                            <option value="Quảng Trị">Quảng Trị</option>
+                            <option value="Sơn La">Sơn La</option>
+                            <option value="Tây Ninh">Tây Ninh</option>
+                            <option value="Thái Nguyên">Thái Nguyên</option>
+                            <option value="Thanh Hóa">Thanh Hóa</option>
+                            <option value="TP. Cần Thơ">TP. Cần Thơ</option>
+                            <option value="TP. Đà Nẵng">TP. Đà Nẵng</option>
+                            <option value="TP. Hà Nội">TP. Hà Nội</option>
+                            <option value="TP. Hải Phòng">TP. Hải Phòng</option>
+                            <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                            <option value="TP. Huế">TP. Huế</option>
+                            <option value="Tuyên Quang">Tuyên Quang</option>
+                            <option value="Vĩnh Long">Vĩnh Long</option>
+                        </select>
+                    </label>
+
+                    <!-- Health Info Section -->
+                    <div class="section-header" style="margin-top: 32px;">
+                        <div class="icon">💊</div>
+                        <h2>Thông tin sức khỏe</h2>
+                    </div>
+
+                    <label class="field">
+                        <span><span class="field-icon">🏥</span> Bệnh thường gặp</span>
+                        <textarea id="commonDiseases" placeholder="VD: viêm mũi dị ứng, đau dạ dày, cao huyết áp..."
+                            rows="3"></textarea>
+                    </label>
+
+                    <label class="field">
+                        <span><span class="field-icon">⚠️</span> Dị ứng thuốc/thức ăn</span>
+                        <textarea id="allergies" placeholder="VD: dị ứng penicillin, hải sản, đậu phộng..."
+                            rows="3"></textarea>
+                    </label>
+
+                    <button type="submit" id="saveBtn" class="btn-save">
+                        <span class="btn-icon">💾</span>
+                        Lưu thay đổi
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">© <span id="year"></span> Hôm Nay Bệnh Gì</div>
+            <a class="footer__link" href="../ve-chung-toi.html">Về chúng tôi</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/profile.js"></script>
+</body>
+
+</html>

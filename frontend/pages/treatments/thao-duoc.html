@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thảo Dược | Hôm Nay Bệnh Gì</title>
+    <meta name="description" content="Tra cứu thông tin các loại thảo dược y học cổ truyền" />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="icon" type="image/x-icon" href="../../assets/images/common/favicon.png">
+    <style>
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #16a34a 0%, #22c55e 50%, #4ade80 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            padding: 25px;
+            margin: -30px auto 30px;
+            max-width: 800px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #22c55e;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        .search-box::before {
+            content: '🔍';
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            color: #64748b;
+        }
+
+        /* Herb Grid */
+        .herb-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        @media (max-width: 1024px) {
+            .herb-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .herb-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .herb-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .herb-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.15);
+            border-color: #22c55e;
+        }
+
+        .herb-card-header {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .herb-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .herb-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .herb-title h3 {
+            margin: 0 0 5px;
+            font-size: 1.15rem;
+            color: #166534;
+        }
+
+        .herb-card-body {
+            padding: 20px 25px 25px;
+        }
+
+        .herb-card-body p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0 0 15px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .herb-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .herb-tag {
+            padding: 5px 12px;
+            background: #f0fdf4;
+            color: #15803d;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e2e8f0;
+            border-top-color: #22c55e;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: #64748b;
+        }
+
+        .empty-state .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 10px 16px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover {
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+
+        .page-btn.active {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .herb-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-left">
+            <a href="../../index.html">
+                <img src="../../assets/images/common/541994741_24566699099664215_389644405058898715_n.png" alt="logo"
+                    class="logo" />
+            </a>
+            <div>
+                <p>Hôm nay</p>
+                <p>Bệnh gì</p>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="header-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor">
+                    <path
+                        d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
+                </svg>Nhóm 3
+            </div>
+            <div class="header-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor">
+                    <path
+                        d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+                </svg>ICT/DS/CS USTH
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Tìm Kiếm...">
+                <button id="searchButton" class="search-btn">Tìm Kiếm</button>
+                <div id="suggestions" class="suggest-box"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <ul class="nav-left">
+            <li><a href="../../index.html">Trang Chủ</a></li>
+            <li class="dropdown">
+                <a class="dropbtn">Bệnh</a>
+                <ul class="dropdown-menu">
+                    <li><a href="../benh.html">Tất Cả Bệnh</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropbtn active">Thuốc</a>
+                <ul class="dropdown-menu">
+                    <li><a href="thao-duoc.html" class="active">Thảo Dược</a></li>
+                    <li><a href="thuoc-tay.html">Thuốc Tây</a></li>
+                </ul>
+            </li>
+            <li><a href="../tai-lieu.html">Tài Liệu</a></li>
+            <li><a href="../ve-chung-toi.html">Về Chúng Tôi</a></li>
+        </ul>
+        <ul class="nav-right">
+            <li><a class="btn white" href="../auth/dang-nhap.html">Đăng Nhập</a></li>
+            <li><a class="btn white" href="../auth/dang-ky.html">Đăng Ký</a></li>
+        </ul>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <h1>🌿 Thảo Dược</h1>
+        <p>Khám phá các loại thảo dược y học cổ truyền với công dụng và cách sử dụng chi tiết</p>
+    </section>
+
+    <main class="container">
+        <!-- FILTER -->
+        <div class="filter-section">
+            <div class="search-box">
+                <input type="text" id="herbSearch" placeholder="Tìm kiếm thảo dược theo tên...">
+            </div>
+            <div class="stats-bar">
+                <span>Tìm thấy <strong id="resultCount">0</strong> thảo dược</span>
+            </div>
+        </div>
+
+        <!-- HERB LIST -->
+        <div id="herbContainer">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Đang tải dữ liệu...</p>
+            </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="pagination" id="pagination"></div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">© <span id="year">2025</span> Hôm Nay Bệnh Gì</div>
+            <a class="footer__link" href="../ve-chung-toi.html">Về chúng tôi</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="../../js/thao-duoc.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <!-- Chatbot Widget -->
+    <link rel="stylesheet" href="../../css/chatbot-widget.css">
+    <script src="../../js/chatbot-widget.js" defer></script>
+</body>
+
+</html>

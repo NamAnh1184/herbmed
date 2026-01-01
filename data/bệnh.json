@@ -1,0 +1,252 @@
+{
+  "Employees": {
+    "Employee": [
+      {
+        "TênBệnh\r": "Common cold (Cảm lạnh)\r"
+      },
+      {
+        "TênBệnh\r": "Influenza (Cúm)\r"
+      },
+      {
+        "TênBệnh\r": "Acute bronchitis (Viêm phế quản cấp)\r"
+      },
+      {
+        "TênBệnh\r": "Asthma (Hen phế quản)\r"
+      },
+      {
+        "TênBệnh\r": "Chronic obstructive pulmonary disease (COPD)\r"
+      },
+      {
+        "TênBệnh\r": "Sinusitis (Viêm xoang)\r"
+      },
+      {
+        "TênBệnh\r": "Pneumonia (Viêm phổi)\r"
+      },
+      {
+        "TênBệnh\r": "Gastritis (Viêm dạ dày)\r"
+      },
+      {
+        "TênBệnh\r": "Peptic ulcer (Loét dạ dày tá tràng)\r"
+      },
+      {
+        "TênBệnh\r": "Gastroesophageal reflux (GERD)\r"
+      },
+      {
+        "TênBệnh\r": "Irritable bowel syndrome (Hội chứng ruột kích thích)\r"
+      },
+      {
+        "TênBệnh\r": "Constipation (Táo bón)\r"
+      },
+      {
+        "TênBệnh\r": "Diarrhea (Tiêu chảy)\r"
+      },
+      {
+        "TênBệnh\r": "Type 2 Diabetes (Đái tháo đường typ 2)\r"
+      },
+      {
+        "TênBệnh\r": "Hypertension (Tăng huyết áp)\r"
+      },
+      {
+        "TênBệnh\r": "Hyperlipidemia (Rối loạn mỡ máu)\r"
+      },
+      {
+        "TênBệnh\r": "Coronary artery disease (Bệnh mạch vành)\r"
+      },
+      {
+        "TênBệnh\r": "Arrhythmia (Rối loạn nhịp tim)\r"
+      },
+      {
+        "TênBệnh\r": "Osteoarthritis (Thoái hóa khớp)\r"
+      },
+      {
+        "TênBệnh\r": "Rheumatoid arthritis (Viêm khớp dạng thấp)\r"
+      },
+      {
+        "TênBệnh\r": "Gout (Bệnh gút)\r"
+      },
+      {
+        "TênBệnh\r": "Back pain / Muscle strain (Đau lưng / căng cơ)\r"
+      },
+      {
+        "TênBệnh\r": "Migraine (Đau nửa đầu)\r"
+      },
+      {
+        "TênBệnh\r": "Tension headache (Đau đầu do căng thẳng)\r"
+      },
+      {
+        "TênBệnh\r": "Anxiety (Lo âu)\r"
+      },
+      {
+        "TênBệnh\r": "Depression (Trầm cảm)\r"
+      },
+      {
+        "TênBệnh\r": "Insomnia (Mất ngủ)\r"
+      },
+      {
+        "TênBệnh\r": "Iron-deficiency anemia (Thiếu máu)\r"
+      },
+      {
+        "TênBệnh\r": "Urinary tract infection (Nhiễm trùng đường tiểu)\r"
+      },
+      {
+        "TênBệnh\r": "Kidney stones (Sỏi thận)\r"
+      },
+      {
+        "TênBệnh\r": "Benign prostatic hyperplasia (Phì đại tuyến tiền liệt)\r"
+      },
+      {
+        "TênBệnh\r": "Menstrual cramps (Đau bụng kinh)\r"
+      },
+      {
+        "TênBệnh\r": "Polycystic ovary syndrome (PCOS)\r"
+      },
+      {
+        "TênBệnh\r": "Infertility (Vô sinh)\r"
+      },
+      {
+        "TênBệnh\r": "Eczema (Chàm)\r"
+      },
+      {
+        "TênBệnh\r": "Psoriasis (Vảy nến)\r"
+      },
+      {
+        "TênBệnh\r": "Acne (Mụn trứng cá)\r"
+      },
+      {
+        "TênBệnh\r": "Dermatitis (Viêm da)\r"
+      },
+      {
+        "TênBệnh\r": "Fungal skin infection (Nấm da)\r"
+      },
+      {
+        "TênBệnh\r": "Wound healing (Lành vết thương)\r"
+      },
+      {
+        "TênBệnh\r": "Burns (Bỏng nhẹ)\r"
+      },
+      {
+        "TênBệnh\r": "Dental pain / Toothache (Đau răng)\r"
+      },
+      {
+        "TênBệnh\r": "Viêm lợi\r"
+      },
+      {
+        "TênBệnh\r": "Hôi miệng\r"
+      },
+      {
+        "TênBệnh\r": "Viêm kết mạc\r"
+      },
+      {
+        "TênBệnh\r": "Viêm mũi dị ứng\r"
+      },
+      {
+        "TênBệnh\r": "Ngộ độc thực phẩm\r"
+      },
+      {
+        "TênBệnh\r": "Béo Phì\r"
+      },
+      {
+        "TênBệnh\r": "Hội Chứng Chuyển Hóa\r"
+      },
+      {
+        "TênBệnh\r": "Gan nhiễm mỡ\r"
+      },
+      {
+        "TênBệnh\r": "Gan nhiễm mỡ\r"
+      },
+      {
+        "TênBệnh\r": "Hỗ trợ miễn dịch\r"
+      },
+      {
+        "TênBệnh\r": "Zona\r"
+      },
+      {
+        "TênBệnh\r": "Scabies (Ghẻ)\r"
+      },
+      {
+        "TênBệnh\r": "\"Ringworm (Bệnh vòng"
+      },
+      {
+        "TênBệnh\r": "Hemorrhoids (Trĩ)\r"
+      },
+      {
+        "TênBệnh\r": "Varicose veins (Suy tĩnh mạch)\r"
+      },
+      {
+        "TênBệnh\r": "Cellulitis (Viêm mô tế bào)\r"
+      },
+      {
+        "TênBệnh\r": "Dandruff (Gàu)\r"
+      },
+      {
+        "TênBệnh\r": "Alopecia / Hair loss (Rụng tóc)\r"
+      },
+      {
+        "TênBệnh\r": "Osteoporosis (Loãng xương)\r"
+      },
+      {
+        "TênBệnh\r": "Fracture healing (Lành xương)\r"
+      },
+      {
+        "TênBệnh\r": "Muscle cramps (Chuột rút)\r"
+      },
+      {
+        "TênBệnh\r": "Tendonitis (Viêm gân)\r"
+      },
+      {
+        "TênBệnh\r": "Insect bites / Stings\r"
+      },
+      {
+        "TênBệnh\r": "Allergic reaction (Dị ứng)\r"
+      },
+      {
+        "TênBệnh\r": "Malaria\r"
+      },
+      {
+        "TênBệnh\r": "Dengue fever\r"
+      },
+      {
+        "TênBệnh\r": "Tuberculosis\r"
+      },
+      {
+        "TênBệnh\r": "Hepatitis (Viêm gan)\r"
+      },
+      {
+        "TênBệnh\r": "Fatigue during chemotherapy (Mệt do hóa trị)\r"
+      },
+      {
+        "TênBệnh\r": "Cold-induced urticaria\r"
+      },
+      {
+        "TênBệnh\r": "Motion sickness (Say tàu xe)\r"
+      },
+      {
+        "TênBệnh\r": "Nausea & vomiting (Buồn nôn và nôn)\r"
+      },
+      {
+        "TênBệnh\r": "Appetite loss (Chán ăn)\r"
+      },
+      {
+        "TênBệnh\r": "Bad digestion / Indigestion (Tiêu hoá kém)\r"
+      },
+      {
+        "TênBệnh\r": "High cholesterol (Cholesterol cao)\r"
+      },
+      {
+        "TênBệnh\r": "Skin hyperpigmentation (Tăng sắc tố da)\r"
+      },
+      {
+        "TênBệnh\r": "Sunburn (Say nắng/ Bỏng do mặt trời)\r"
+      },
+      {
+        "TênBệnh\r": "Eye dryness (Khô mắt)\r"
+      },
+      {
+        "TênBệnh\r": "Minor bacterial infections (Nhiễm khuẩn nhẹ)\r"
+      },
+      {
+        "TênBệnh\r": " "
+      }
+    ]
+  }
+}

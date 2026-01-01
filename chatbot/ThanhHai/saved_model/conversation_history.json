@@ -1,0 +1,32 @@
+[
+  {
+    "query": "dự báo thời tiết hôm nay?",
+    "intent": "general",
+    "response": "CSDL chưa có thông tin về **dự báo thời tiết** hôm nay. ⚠️ Thông tin mang tính tham khảo, không thay thế chẩn đoán và tư vấn y khoa trực tiếp.",
+    "retrieved_docs": 3
+  },
+  {
+    "query": "Nghệ vàng có tác dụng gì với viêm dạ dày?",
+    "intent": "herb",
+    "response": "Nghệ vàng có một số tác dụng liên quan đến **viêm dạ dày** (Gastritis) như sau:\n\n- **Thảo dược chính**: Nghệ vàng\n- **Cơ chế/đích tác động**:\n  - **Curcumin** trong nghệ vàng có tác dụng **kháng viêm**, **chống oxy hóa**, và **bảo vệ niêm mạc** dạ dày.\n- **Con đường tác động**:\n  - Nghệ vàng ức chế các yếu tố gây viêm như **NF-κB**, **COX-2**, và **iNOS**.\n  - Kích hoạt **Nrf2–HO-1** giúp chống oxy hóa và bảo vệ gan – dạ dày.\n- **Dược động học**:\n  - Curcuminoid trong nghệ vàng có khả năng **hấp thu rất thấp**, nhưng khả năng này có thể tăng lên khi kết hợp với **piperine** hoặc nhũ tương.\n  - Curcumin ưa lipid và tích lũy trong mô, ít qua hàng rào máu não (BBB).\n- **Dược lực học & hiệu quả**:\n  - Có tác dụng **kháng viêm**, **chống oxy hóa**.\n  - Liều khuyến nghị từ **500 mg đến 2 g/ngày** tùy theo chế phẩm.\n  - Cần lưu ý rằng liều cao có thể **tăng nguy cơ chảy máu** và có thể **kích ứng dạ dày**.\n- **Độc tính/tác dụng phụ**:\n  - Curcumin có **độc tính cấp thấp**, nhưng có thể gây **kích ứng dạ dày** và hiếm khi làm tăng men gan.\n\n⚠️ Thông tin mang tính tham khảo, không thay thế chẩn đoán và tư vấn y khoa trực tiếp.",
+    "retrieved_docs": 3
+  },
+  {
+    "query": "Thuốc Omeprazole dùng như thế nào?",
+    "intent": "drug",
+    "response": "**Thuốc Omeprazole** được sử dụng chủ yếu trong điều trị các bệnh liên quan đến dạ dày như **Gastritis (Viêm dạ dày)** và **Gastroesophageal reflux – GERD (Trào ngược dạ dày thực quản)**. Dưới đây là một số thông tin chi tiết về cách sử dụng thuốc này:\n\n- **Cơ chế tác động**: \n  - Omeprazole ức chế **bơm proton** (H⁺/K⁺-ATPase) tại tế bào thành vị, dẫn đến **giảm tiết acid dạ dày**.\n\n- **Dược động học**:\n  - Thuốc có dạng **bao tan ruột** và được hấp thu tại **ruột non**.\n  - Omeprazole bị phá hủy bởi acid và gắn với protein cao.\n  - Chuyển hóa chủ yếu qua **gan** (CYP2C19/3A4) và thải trừ qua **thận** và **mật**.\n\n- **Liều dùng**:\n  - Thông thường, liều sử dụng là từ **20–40 mg/ngày**. Tuy nhiên, thông tin này **không phải khuyến nghị tự dùng thuốc**.\n\n- **Tác dụng phụ**:\n  - Có thể gặp các tác dụng phụ như **đau đầu**, **tiêu chảy**, và nguy cơ thiếu **Mg/B12**, cũng như tăng nguy cơ **nhiễm trùng tiêu hóa**.\n\n- **Tương tác thuốc**:\n  - Omeprazole có thể làm giảm **hấp thu sắt**, **canxi cacbonat**, và **nấm men**. \n  - Các thuốc antacid hoặc thảo dược kiềm dạ dày có thể ảnh hưởng đến sự hấp thu của Omeprazole.\n\n⚠️ Thông tin mang tính tham khảo, không thay thế chẩn đoán và tư vấn y khoa trực tiếp.",
+    "retrieved_docs": 3
+  },
+  {
+    "query": "Tôi bị đau bụng, buồn nôn, có thể là bệnh gì?",
+    "intent": "symptom_to_disease",
+    "response": "Dựa trên thông tin từ CSDL, các triệu chứng **đau bụng** và **buồn nôn** của bạn có thể liên quan đến một số bệnh lý như sau:\n\n- **Nausea & vomiting (Buồn nôn và nôn)**:\n  - Triệu chứng: Cảm giác nôn nao ở vùng thượng vị, tăng dần rồi nôn, kèm chóng mặt.\n  - Câu hỏi sàng lọc:\n    - Bạn bị bao lâu rồi (giờ/ngày/tuần) và mức độ nặng nhẹ ra sao?\n    - Bạn có kèm dấu hiệu nào không: nôn ra máu, đi ngoài phân đen, đau bụng dữ dội, sốt cao, vàng da-vàng mắt, sụt cân nhanh, mất nước, hoặc khó thở/choáng?\n\n- **Gastritis (Viêm dạ dày)**:\n  - Triệu chứng: Đau âm ỉ hoặc bỏng rát vùng thượng vị, đầy hơi, ợ nóng, buồn nôn, khó tiêu sau ăn.\n  - Câu hỏi sàng lọc:\n    - Bạn bị bao lâu rồi (giờ/ngày/tuần) và mức độ nặng nhẹ ra sao?\n    - Bạn có kèm dấu hiệu nào không: nôn ra máu, đi ngoài phân đen, đau bụng dữ dội, sốt cao, vàng da-vàng mắt, sụt cân nhanh, mất nước, hoặc khó thở/choáng?\n\n- **Irritable bowel syndrome – IBS (Hội chứng ruột kích thích)**:\n  - Triệu chứng: Đau bụng âm ỉ, đầy hơi, sình bụng, rối loạn đi tiêu (lúc táo, lúc tiêu chảy), giảm đau sau khi đi ngoài.\n  - Câu hỏi sàng lọc:\n    - Bạn bị bao lâu rồi (giờ/ngày/tuần) và mức độ nặng nhẹ ra sao?\n    - Bạn có kèm dấu hiệu nào không: nôn ra máu, đi ngoài phân đen, đau bụng dữ dội, sốt cao, vàng da-vàng mắt, sụt cân nhanh, mất nước, hoặc khó thở/choáng?\n\n⚠️ Nếu có dấu hiệu nguy hiểm (ví dụ: nôn ra máu, phân đen, đau bụng dữ dội, sốt cao, vàng da…), hãy đi khám/cấp cứu.  \n⚠️ Thông tin mang tính tham khảo, không thay thế chẩn đoán và tư vấn y khoa trực tiếp.",
+    "retrieved_docs": 3
+  },
+  {
+    "query": "Ma túy hút có chết k",
+    "intent": "general",
+    "response": "CSDL chưa có thông tin về việc ma túy hút có thể gây chết người hay không. Tuy nhiên, việc sử dụng ma túy có thể gây ra nhiều tác hại nghiêm trọng đến sức khỏe, bao gồm cả nguy cơ tử vong trong một số trường hợp.\n\n⚠️ Thông tin mang tính tham khảo, không thay thế chẩn đoán và tư vấn y khoa trực tiếp.",
+    "retrieved_docs": 3
+  }
+]

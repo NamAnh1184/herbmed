@@ -1,0 +1,831 @@
+/* =====================================================
+   HERBMED - MAIN STYLESHEET
+   Combined CSS for all pages
+   ===================================================== */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Slab:wght@100..900&display=swap');
+
+/* =====================================================
+   CSS VARIABLES
+   ===================================================== */
+:root {
+  --brand: #0a991d;
+  --brand-600: #088319;
+  --ink: #0f172a;
+  --muted: #475569;
+  --bg: #ffffff;
+  --surface: #f8fafc;
+  --ring: rgba(2, 132, 199, .25);
+  --radius: 14px;
+  --shadow: 0 8px 24px rgba(2, 8, 23, .08);
+}
+
+/* =====================================================
+   RESET & BASE
+   ===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto Slab", serif;
+}
+
+body {
+  background: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header-left {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+}
+
+.header-center {
+  display: flex;
+  gap: 30px;
+}
+
+.header-item {
+  display: flex;
+  gap: 1px;
+  align-items: center;
+}
+
+.header-item button {
+  border: none;
+  background: none;
+  font-size: 18px;
+}
+
+.header-right {
+  display: flex;
+}
+
+.header-right input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px 0 0 8px;
+}
+
+/* =====================================================
+   SEARCH
+   ===================================================== */
+.search-btn {
+  padding: 10px 20px;
+  background: #0a991d;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 0 8px 8px 0;
+  transition: background 0.2s;
+}
+
+.search-btn:hover {
+  background: #088319;
+}
+
+.search-container {
+  position: relative;
+  display: inline-flex;
+}
+
+#searchInput {
+  width: 280px;
+  padding: 10px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px 0 0 8px;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #0a991d;
+  box-shadow: 0 0 0 3px rgba(10, 153, 29, 0.1);
+}
+
+/* Search Dropdown */
+.suggest-box {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 350px;
+  min-width: 100%;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  max-height: 420px;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  display: none;
+}
+
+/* Search Groups */
+.search-group {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.search-group:last-of-type {
+  border-bottom: none;
+}
+
+.search-group-header {
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  background: #f8fafc;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+}
+
+/* Search Items */
+.search-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #1e293b;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.search-item:hover {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.search-item-icon {
+  font-size: 18px;
+  width: 28px;
+  text-align: center;
+}
+
+.search-item-name {
+  flex: 1;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-item-name mark {
+  background: linear-gradient(135deg, #fef08a 0%, #fde047 100%);
+  padding: 1px 4px;
+  border-radius: 3px;
+  color: inherit;
+}
+
+/* Search States */
+.search-loading {
+  padding: 20px;
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.search-error {
+  padding: 20px;
+  text-align: center;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.search-no-results {
+  padding: 30px 20px;
+  text-align: center;
+  color: #64748b;
+}
+
+.search-no-results span {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.search-no-results p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Search Footer */
+.search-footer {
+  padding: 10px 16px;
+  font-size: 12px;
+  color: #94a3b8;
+  background: #f8fafc;
+  text-align: center;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
+.navbar {
+  background: #0a991d;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  list-style: none;
+  gap: 50px;
+}
+
+.nav-left a,
+.nav-right a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: #ffffff;
+  padding: 10px 0;
+  list-style: none;
+  border-radius: 8px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li a {
+  color: #000;
+  padding: 10px 20px;
+  display: block;
+}
+
+.dropdown-menu li a:hover {
+  background: #f5f5f5;
+}
+
+/* Buttons */
+.btn.white {
+  color: #000 !important;
+  background: #fff;
+  padding: 8px 20px;
+  border-radius: 20px;
+}
+
+/* =====================================================
+   LAYOUT
+   ===================================================== */
+.container {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding: 0 16px;
+}
+
+/* Banner */
+.image-firstrow {
+  width: 100%;
+}
+
+.image-header {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+/* =====================================================
+   CARDS & SECTIONS (Homepage)
+   ===================================================== */
+.section-title {
+  font-size: 28px;
+  margin: 36px 0 14px 0;
+}
+
+.cards {
+  padding: 10px 0 24px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.card {
+  grid-column: span 12;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.card h3 {
+  margin-top: 90px;
+}
+
+.card .link {
+  display: inline-block;
+  margin-top: 80px;
+  text-decoration: none;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.list {
+  padding-left: 18px;
+}
+
+/* =====================================================
+   CONTENT SECTIONS (Disease/Treatment pages)
+   ===================================================== */
+.section {
+  padding: 40px 0;
+  line-height: 2.5;
+}
+
+.section h1,
+.section h2,
+.section h3,
+.section h4,
+.section h5 {
+  margin-bottom: 1px;
+  font-size: 36px;
+}
+
+.section ul {
+  padding-left: 20px;
+}
+
+.main-image {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: auto;
+  border-radius: 12px;
+}
+
+.compare-btn {
+  display: inline-block;
+  margin-top: 20px;
+  color: blue;
+  text-decoration: underline;
+  font-size: 18px;
+}
+
+/* =====================================================
+   DRUG PAGE
+   ===================================================== */
+.drug-page {
+  max-width: 1100px;
+  margin: 40px auto 56px;
+  padding: 0 16px;
+}
+
+.drug-page h1 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.drug-page h2 {
+  font-size: 1.35rem;
+  margin: 28px 0 12px;
+}
+
+.drug-intro {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.warning-box {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #7f1d1d;
+  font-size: .95rem;
+}
+
+.table-wrapper {
+  margin: 16px 0 24px;
+  overflow-x: auto;
+}
+
+.drug-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+  font-size: .95rem;
+}
+
+.drug-table th,
+.drug-table td {
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  vertical-align: top;
+}
+
+.drug-table th {
+  background: #fef08a;
+  text-align: center;
+  font-weight: 700;
+}
+
+.drug-table td:nth-child(1) {
+  font-weight: 600;
+}
+
+.ref-list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.ref-list li {
+  margin-bottom: 6px;
+}
+
+.ref-list a {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.ref-list a:hover {
+  text-decoration: underline;
+}
+
+/* =====================================================
+   AUTH FORMS (Login/Signup)
+   ===================================================== */
+.auth-wrap {
+  width: 100%;
+  padding: 36px 0 48px;
+}
+
+.auth-card {
+  width: min(720px, 92vw);
+  margin: 24px auto 0;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.auth-title {
+  margin: 4px 0 18px;
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+/* Forms */
+form {
+  display: grid;
+  gap: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field>span {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.4px solid #dbe3ef;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color .15s, box-shadow .15s;
+  outline: none;
+  background: #fff;
+}
+
+.field input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px rgba(10, 153, 29, .12);
+}
+
+.with-toggle {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggle {
+  border: none;
+  background: #f1f5f9;
+  padding: 9px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.error {
+  color: #b6002a;
+  min-height: 1em;
+  font-size: .9rem;
+}
+
+.remember {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.btn-primary {
+  margin-top: 6px;
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .04s, background .15s, box-shadow .15s;
+  box-shadow: 0 6px 16px rgba(10, 153, 29, .2);
+}
+
+.btn-primary:hover {
+  background: var(--brand-600);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.form-footer .forgot {
+  text-decoration: none;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.form-footer .forgot:hover {
+  text-decoration: underline;
+}
+
+/* =====================================================
+   USER BOX (Logged in state)
+   ===================================================== */
+.user-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.welcome-text {
+  color: #fff;
+}
+
+.logout-btn {
+  background: #fff;
+  color: var(--brand);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background: #f0f0f0;
+}
+
+.profile-btn {
+  background: #fff;
+  color: var(--brand) !important;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.profile-btn:hover {
+  background: #f0f0f0;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+.site-footer {
+  background: #0b1220;
+  color: #cbd5e1;
+  margin-top: auto;
+}
+
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+}
+
+.footer__link {
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+}
+
+/* =====================================================
+   CATEGORY PAGE (Disease categories)
+   ===================================================== */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 30px 0;
+}
+
+.category-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(2, 8, 23, .12);
+}
+
+.category-card h3 {
+  color: var(--brand);
+  margin-bottom: 8px;
+}
+
+.category-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (min-width: 680px) {
+  .card {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 980px) {
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__menu {
+    display: flex;
+  }
+
+  .card {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 979.98px) {
+  .nav__toggle {
+    display: inline-block;
+  }
+
+  .nav__menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 64px;
+    background: var(--brand);
+    flex-direction: column;
+    padding: 10px;
+    display: none;
+  }
+
+  .nav__menu.is-open {
+    display: flex;
+  }
+
+  .nav__item {
+    width: 100%;
+  }
+
+  .nav__search .search {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-left,
+  .nav-right {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-center {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .header-right input {
+    width: 160px;
+  }
+
+  .section h1,
+  .section h2,
+  .section h3,
+  .section h4,
+  .section h5,
+  .section h6 {
+    font-size: 26px;
+  }
+
+  .section p,
+  .section ul {
+    font-size: 16px;
+  }
+}
+
+/* =====================================================
+   SITE HEADER BUTTONS
+   ===================================================== */
+.site-header .btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.site-header .btn-outline:hover {
+  background: rgba(255, 255, 255, .12);
+}
+
+.site-header .btn,
+.site-header .btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.site-header .btn:hover,
+.site-header .btn-outline:hover {
+  background: rgba(255, 255, 255, .12);
+}

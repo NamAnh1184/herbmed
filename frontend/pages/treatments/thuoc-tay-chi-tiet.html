@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi Tiết Thuốc Tây | Hôm Nay Bệnh Gì</title>
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="icon" type="image/x-icon" href="../../assets/images/common/favicon.png">
+    <style>
+        .breadcrumb {
+            padding: 15px 0;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .breadcrumb a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .medicine-header {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+            color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+        }
+
+        .medicine-header .container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .medicine-icon-large {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .medicine-info h1 {
+            font-size: 2.2rem;
+            margin: 0 0 10px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding-bottom: 60px;
+        }
+
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        .info-card h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            color: #1e40af;
+            margin: 0 0 15px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #dbeafe;
+        }
+
+        .info-card p,
+        .info-card .content {
+            color: #475569;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .warning-card {
+            background: linear-gradient(135deg, #fef3c7, #fef9c3);
+            border-left: 4px solid #f59e0b;
+        }
+
+        .warning-card h2 {
+            color: #b45309;
+            border-bottom-color: #fcd34d;
+        }
+
+        .danger-card {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border-left: 4px solid #ef4444;
+        }
+
+        .danger-card h2 {
+            color: #dc2626;
+            border-bottom-color: #fca5a5;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            color: #64748b;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #e2e8f0;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .medicine-header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .medicine-info h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-left">
+            <a href="../../index.html">
+                <img src="../../assets/images/common/541994741_24566699099664215_389644405058898715_n.png" alt="logo"
+                    class="logo" />
+            </a>
+            <div>
+                <p>Hôm nay</p>
+                <p>Bệnh gì</p>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="header-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor">
+                    <path
+                        d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
+                </svg>Nhóm 3
+            </div>
+            <div class="header-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor">
+                    <path
+                        d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+                </svg>ICT/DS/CS USTH
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Tìm Kiếm...">
+                <button id="searchButton" class="search-btn">Tìm Kiếm</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <ul class="nav-left">
+            <li><a href="../../index.html">Trang Chủ</a></li>
+            <li class="dropdown">
+                <a class="dropbtn" href="../benh.html">Bệnh</a>
+                <ul class="dropdown-menu">
+                    <li><a href="../benh.html">Tất Cả Bệnh</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropbtn active">Thuốc</a>
+                <ul class="dropdown-menu">
+                    <li><a href="thao-duoc.html">Thảo Dược</a></li>
+                    <li><a href="thuoc-tay.html">Thuốc Tây</a></li>
+                </ul>
+            </li>
+            <li><a href="../tai-lieu.html">Tài Liệu</a></li>
+            <li><a href="../ve-chung-toi.html">Về Chúng Tôi</a></li>
+        </ul>
+        <ul class="nav-right">
+            <li><a class="btn white" href="../auth/dang-nhap.html">Đăng Nhập</a></li>
+            <li><a class="btn white" href="../auth/dang-ky.html">Đăng Ký</a></li>
+        </ul>
+    </nav>
+
+    <div id="pageContent">
+        <div class="loading">
+            <div class="loading-spinner"></div>
+            <p>Đang tải thông tin...</p>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">© <span id="year">2025</span> Hôm Nay Bệnh Gì</div>
+            <a class="footer__link" href="../ve-chung-toi.html">Về chúng tôi</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:3000/api'
+            : '/api';
+        const urlParams = new URLSearchParams(window.location.search);
+        const medicineId = urlParams.get('id');
+        const pageContent = document.getElementById('pageContent');
+
+        document.addEventListener('DOMContentLoaded', loadMedicineDetail);
+
+        async function loadMedicineDetail() {
+            if (!medicineId) { showError('Không tìm thấy ID thuốc'); return; }
+
+            try {
+                const res = await fetch(`${API_BASE}/thuoctay/${medicineId}`);
+                if (!res.ok) throw new Error('Không tìm thấy thuốc');
+                const med = await res.json();
+                document.title = `${med.thuoc_tay} | Hôm Nay Bệnh Gì`;
+                renderMedicineDetail(med);
+            } catch (e) { showError(e.message); }
+        }
+
+        function renderMedicineDetail(med) {
+            const dacdiem = med.dac_diem_nguon_goc;
+            const doctinh = med.doc_tinh;
+            const thoigian = med.thoi_gian_tac_dung;
+
+            pageContent.innerHTML = `
+                <section class="medicine-header">
+                    <div class="container">
+                        <div class="medicine-icon-large">💊</div>
+                        <div class="medicine-info">
+                            <h1>${escapeHtml(med.thuoc_tay)}</h1>
+                            <span>Thuốc tây y</span>
+                        </div>
+                    </div>
+                </section>
+
+                <main class="container">
+                    <nav class="breadcrumb">
+                        <a href="../../index.html">Trang chủ</a> &gt;
+                        <a href="thuoc-tay.html">Thuốc tây</a> &gt;
+                        <span>${escapeHtml(med.thuoc_tay)}</span>
+                    </nav>
+
+                    <a href="thuoc-tay.html" class="back-btn">← Quay lại danh sách</a>
+
+                    <div class="content-grid">
+                        <div class="main-content">
+                            ${med.hoat_chat ? `
+                                <div class="info-card">
+                                    <h2>🧪 Hoạt Chất</h2>
+                                    <div class="content">${escapeHtml(med.hoat_chat)}</div>
+                                </div>
+                            ` : ''}
+
+                            ${med.biet_duoc ? `
+                                <div class="info-card">
+                                    <h2>💊 Biệt Dược</h2>
+                                    <div class="content">${escapeHtml(med.biet_duoc)}</div>
+                                </div>
+                            ` : ''}
+
+                            ${med.cac_thanh_phan_trong_thuoc ? `
+                                <div class="info-card">
+                                    <h2>📝 Thành Phần</h2>
+                                    <div class="content">${escapeHtml(med.cac_thanh_phan_trong_thuoc)}</div>
+                                </div>
+                            ` : ''}
+
+                            ${dacdiem ? `
+                                <div class="info-card">
+                                    <h2>🏭 Đặc Điểm Nguồn Gốc</h2>
+                                    ${dacdiem.nguon_goc ? `<p><strong>Nguồn gốc:</strong> ${escapeHtml(dacdiem.nguon_goc)}</p>` : ''}
+                                    ${dacdiem.do_tinh_khiet ? `<p><strong>Độ tinh khiết:</strong> ${escapeHtml(dacdiem.do_tinh_khiet)}</p>` : ''}
+                                    ${dacdiem.chi_phi ? `<p><strong>Chi phí:</strong> ${escapeHtml(dacdiem.chi_phi)}</p>` : ''}
+                                    ${dacdiem.kha_nang_ung_dung_lam_sang ? `<p><strong>Khả năng ứng dụng lâm sàng:</strong> ${escapeHtml(dacdiem.kha_nang_ung_dung_lam_sang)}</p>` : ''}
+                                </div>
+                            ` : ''}
+
+                            ${thoigian ? `
+                                <div class="info-card">
+                                    <h2>⏱️ Thời Gian Tác Dụng</h2>
+                                    ${thoigian.thoi_gian_phat_huy_tac_dung ? `<p><strong>Thời gian phát huy tác dụng:</strong> ${escapeHtml(thoigian.thoi_gian_phat_huy_tac_dung)}</p>` : ''}
+                                    ${thoigian.thoi_gian_het_tac_dung_phu ? `<p><strong>Thời gian hết tác dụng phụ:</strong> ${escapeHtml(thoigian.thoi_gian_het_tac_dung_phu)}</p>` : ''}
+                                </div>
+                            ` : ''}
+
+                            ${doctinh ? `
+                                <div class="info-card danger-card">
+                                    <h2>☠️ Độc Tính</h2>
+                                    ${doctinh.doc_tinh_cap_tinh_ld50 ? `<p><strong>Độc tính cấp tính (LD50):</strong> ${escapeHtml(doctinh.doc_tinh_cap_tinh_ld50)}</p>` : ''}
+                                    ${doctinh.doc_tinh_man_tinh ? `<p><strong>Độc tính mãn tính:</strong> ${escapeHtml(doctinh.doc_tinh_man_tinh)}</p>` : ''}
+                                    ${doctinh.tuong_tac_thuoc_thao_duoc ? `<p><strong>Tương tác thuốc - thảo dược:</strong> ${escapeHtml(doctinh.tuong_tac_thuoc_thao_duoc)}</p>` : ''}
+                                </div>
+                            ` : ''}
+
+                            ${med.canh_bao_va_chong_chi_dinh ? `
+                                <div class="info-card danger-card">
+                                    <h2>⚠️ Cảnh Báo & Chống Chỉ Định</h2>
+                                    <div class="content">${escapeHtml(med.canh_bao_va_chong_chi_dinh)}</div>
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <aside class="sidebar">
+                            <div class="info-card warning-card">
+                                <h2>⚠️ Lưu ý quan trọng</h2>
+                                <p>Thông tin thuốc chỉ mang tính tham khảo. Vui lòng tham khảo ý kiến bác sĩ hoặc dược sĩ trước khi sử dụng.</p>
+                            </div>
+                        </aside>
+                    </div>
+                </main>
+            `;
+        }
+
+        function showError(msg) {
+            pageContent.innerHTML = `
+                <div class="container" style="padding: 100px 20px; text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">😔</div>
+                    <h2>${msg}</h2>
+                    <a href="thuoc-tay.html" style="display: inline-block; margin-top: 20px; padding: 12px 24px; background: #3b82f6; color: white; text-decoration: none; border-radius: 10px;">
+                        ← Quay lại danh sách
+                    </a>
+                </div>
+            `;
+        }
+
+        function escapeHtml(t) { if (!t) return ''; const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+    </script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/auth.js"></script>
+
+    <!-- Chatbot Widget -->
+    <link rel="stylesheet" href="../../css/chatbot-widget.css">
+    <script src="../../js/chatbot-widget.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Ký | Hôm Nay Bệnh Gì</title>
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="icon" type="image/x-icon" href="../../assets/images/common/favicon.png">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-left">
+            <a href="../../index.html">
+                <img src="../../assets/images/common/541994741_24566699099664215_389644405058898715_n.png" alt="logo"
+                    class="logo" />
+            </a>
+            <div>
+                <p>Hôm nay</p>
+                <p>Bệnh gì</p>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="header-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor">
+                    <path
+                        d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
+                </svg>Nhóm 3
+            </div>
+            <div class="header-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor">
+                    <path
+                        d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+                </svg>ICT/DS/CS USTH
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Tìm Kiếm..."><button id="searchButton"
+                    class="search-btn">Tìm Kiếm</button>
+                <div id="suggestions" class="suggest-box"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <ul class="nav-left">
+            <li><a href="../../index.html">Trang Chủ</a></li>
+            <li class="dropdown">
+                <a class="dropbtn">Bệnh</a>
+                <ul class="dropdown-menu">
+                    <li><a href="../diseases/ho-hap.html">Tai Mũi Họng và Hô Hấp</a></li>
+                    <li><a href="../diseases/tieu-hoa.html">Tiêu Hóa</a></li>
+                    <li><a href="../diseases/mat.html">Mắt</a></li>
+                    <li><a href="../diseases/noi-tiet.html">Nội Tiết và Chuyển Hóa</a></li>
+                    <li><a href="../diseases/tim-mach.html">Máu và Tim Mạch</a></li>
+                    <li><a href="../diseases/tam-ly.html">Tâm Lý Học</a></li>
+                    <li><a href="../diseases/co-xuong-khop.html">Cơ Xương Khớp</a></li>
+                    <li><a href="../diseases/sinh-duc.html">Nam Khoa và Phụ Khoa</a></li>
+                    <li><a href="../diseases/da-lieu.html">Da Liễu</a></li>
+                    <li><a href="../diseases/rang-ham-mat.html">Răng Hàm Mặt</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropbtn">Thuốc</a>
+                <ul class="dropdown-menu">
+                    <li><a href="../treatments/thao-duoc.html">Thảo Dược</a></li>
+                    <li><a href="../treatments/thuoc-tay.html">Thuốc Tây</a></li>
+                </ul>
+            </li>
+            <li><a href="../tai-lieu.html">Tài Liệu Tham Khảo</a></li>
+            <li><a href="../ve-chung-toi.html">Về Chúng Tôi</a></li>
+        </ul>
+
+        <ul class="nav-right">
+            <li><a class="btn white" href="dang-nhap.html">Đăng Nhập</a></li>
+            <li><a class="btn white" href="dang-ky.html">Đăng Ký</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sign Up section -->
+    <main class="container auth-wrap">
+        <div class="auth-card">
+            <h2 class="auth-title">Đăng Ký Tài Khoản</h2>
+            <form id="signupForm" novalidate>
+                <label class="field">
+                    <span>Email</span>
+                    <input type="email" id="email" placeholder="Nhập email" required autocomplete="email" />
+                    <small class="error" data-for="email"></small>
+                </label>
+
+                <label class="field">
+                    <span>Số điện thoại</span>
+                    <input type="tel" id="phonenumber" placeholder="Nhập số điện thoại" inputmode="tel" required />
+                    <small class="error" data-for="phonenumber"></small>
+                </label>
+
+                <label class="field">
+                    <span>Tên đăng nhập</span>
+                    <input type="text" id="username" placeholder="Nhập tên đăng nhập" minlength="3" required />
+                    <small class="error" data-for="username"></small>
+                </label>
+
+                <label class="field">
+                    <span>Tuổi</span>
+                    <input type="number" id="age" placeholder="Nhập tuổi" min="13" max="120" required />
+                    <small class="error" data-for="age"></small>
+                </label>
+
+                <label class="field">
+                    <span>Giới tính</span>
+                    <select id="gender" required
+                        style="width:100%; padding:12px 14px; border:1.4px solid #dbe3ef; border-radius:10px; font-size:16px; background:#fff;">
+                        <option value="">-- Chọn giới tính --</option>
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                    <small class="error" data-for="gender"></small>
+                </label>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+                    <label class="field">
+                        <span>Chiều cao (cm)</span>
+                        <input type="number" id="height" placeholder="VD: 165" min="50" max="250" required />
+                        <small class="error" data-for="height"></small>
+                    </label>
+                    <label class="field">
+                        <span>Cân nặng (kg)</span>
+                        <input type="number" id="weight" placeholder="VD: 60" min="10" max="300" required />
+                        <small class="error" data-for="weight"></small>
+                    </label>
+                </div>
+
+                <label class="field">
+                    <span>Tỉnh/Thành phố</span>
+                    <select id="location" required
+                        style="width:100%; padding:12px 14px; border:1.4px solid #dbe3ef; border-radius:10px; font-size:16px; background:#fff;">
+                        <option value="">-- Chọn tỉnh/thành phố --</option>
+                        <option value="An Giang">An Giang</option>
+                        <option value="Bắc Ninh">Bắc Ninh</option>
+                        <option value="Cà Mau">Cà Mau</option>
+                        <option value="Cao Bằng">Cao Bằng</option>
+                        <option value="Điện Biên">Điện Biên</option>
+                        <option value="Đắk Lắk">Đắk Lắk</option>
+                        <option value="Đồng Nai">Đồng Nai</option>
+                        <option value="Đồng Tháp">Đồng Tháp</option>
+                        <option value="Gia Lai">Gia Lai</option>
+                        <option value="Hà Tĩnh">Hà Tĩnh</option>
+                        <option value="Hưng Yên">Hưng Yên</option>
+                        <option value="Khánh Hoà">Khánh Hoà</option>
+                        <option value="Lai Châu">Lai Châu</option>
+                        <option value="Lạng Sơn">Lạng Sơn</option>
+                        <option value="Lào Cai">Lào Cai</option>
+                        <option value="Lâm Đồng">Lâm Đồng</option>
+                        <option value="Nghệ An">Nghệ An</option>
+                        <option value="Ninh Bình">Ninh Bình</option>
+                        <option value="Phú Thọ">Phú Thọ</option>
+                        <option value="Quảng Ngãi">Quảng Ngãi</option>
+                        <option value="Quảng Ninh">Quảng Ninh</option>
+                        <option value="Quảng Trị">Quảng Trị</option>
+                        <option value="Sơn La">Sơn La</option>
+                        <option value="Tây Ninh">Tây Ninh</option>
+                        <option value="Thái Nguyên">Thái Nguyên</option>
+                        <option value="Thanh Hóa">Thanh Hóa</option>
+                        <option value="TP. Cần Thơ">TP. Cần Thơ</option>
+                        <option value="TP. Đà Nẵng">TP. Đà Nẵng</option>
+                        <option value="TP. Hà Nội">TP. Hà Nội</option>
+                        <option value="TP. Hải Phòng">TP. Hải Phòng</option>
+                        <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                        <option value="TP. Huế">TP. Huế</option>
+                        <option value="Tuyên Quang">Tuyên Quang</option>
+                        <option value="Vĩnh Long">Vĩnh Long</option>
+                    </select>
+                    <small class="error" data-for="location"></small>
+                </label>
+
+                <label class="field">
+                    <span>Bệnh thường gặp (không bắt buộc)</span>
+                    <textarea id="commonDiseases" placeholder="VD: viêm mũi dị ứng, đau dạ dày..." rows="2"></textarea>
+                    <small class="error" data-for="commonDiseases"></small>
+                </label>
+
+                <label class="field">
+                    <span>Dị ứng thuốc/thức ăn (không bắt buộc)</span>
+                    <textarea id="allergies" placeholder="VD: dị ứng penicillin, hải sản..." rows="2"></textarea>
+                    <small class="error" data-for="allergies"></small>
+                </label>
+
+                <label class="field">
+                    <span>Mật khẩu</span>
+                    <div class="with-toggle">
+                        <input type="password" id="psw" placeholder="Nhập mật khẩu" minlength="8" required />
+                        <button type="button" class="toggle" onclick="togglePwd('psw', this)"
+                            aria-label="Hiện/ẩn mật khẩu">👁</button>
+                    </div>
+                    <small class="hint">Tối thiểu 8 ký tự</small>
+                    <small class="error" data-for="psw"></small>
+                </label>
+
+                <label class="field">
+                    <span>Xác nhận mật khẩu</span>
+                    <div class="with-toggle">
+                        <input type="password" id="psw-retype" placeholder="Nhập lại mật khẩu" minlength="8" required />
+                        <button type="button" class="toggle" onclick="togglePwd('psw-retype', this)"
+                            aria-label="Hiện/ẩn mật khẩu">👁</button>
+                    </div>
+                    <small class="error" data-for="psw-retype"></small>
+                </label>
+
+                <label class="remember">
+                    <input type="checkbox" id="remember" />
+                    <span>Ghi nhớ đăng nhập</span>
+                </label>
+
+                <button type="submit" id="submit" class="btn-primary">Đăng ký</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">© <span id="year"></span> Hôm Nay Bệnh Gì</div>
+            <a class="footer__link" href="../ve-chung-toi.html">Về chúng tôi</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/signup.js"></script>
+</body>
+
+</html>
