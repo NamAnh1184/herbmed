@@ -6,7 +6,8 @@
 // API Base URL
 const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:3000/api'
-    : '/api';
+    : 'https://herbmed-production.up.railway.app/api';
+
 
 // Get disease ID from URL
 const urlParams = new URLSearchParams(window.location.search);
