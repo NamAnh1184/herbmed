@@ -90,10 +90,39 @@ const searchInput = document.getElementById('diseaseSearch');
 const categoryFilter = document.getElementById('categoryFilter');
 const paginationContainer = document.getElementById('pagination');
 
+// Get URL parameters
+function getUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        nhombenh_sk: params.get('nhombenh_sk'),
+        search: params.get('search')
+    };
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
     await loadCategories();
+
+    // Check for URL parameters and apply filters
+    const urlParams = getUrlParams();
+
+    // If category filter from URL, set it
+    if (urlParams.nhombenh_sk) {
+        categoryFilter.value = urlParams.nhombenh_sk;
+    }
+
+    // If search term from URL, set it
+    if (urlParams.search) {
+        searchInput.value = urlParams.search;
+    }
+
     await loadDiseases();
+
+    // If we have URL params, apply filter immediately after loading
+    if (urlParams.nhombenh_sk || urlParams.search) {
+        await filterDiseases();
+    }
+
     setupEventListeners();
 });
 

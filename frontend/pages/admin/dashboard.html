@@ -404,13 +404,43 @@
             }
         }
 
+        .chart-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
         .chart-card h3 {
             font-size: 0.95rem;
             font-weight: 600;
             color: var(--text);
-            margin: 0 0 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border);
+            margin: 0;
+        }
+
+        .download-btn {
+            padding: 6px 12px;
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
         }
 
         .chart-container {
@@ -534,6 +564,22 @@
             color: var(--text-secondary);
             font-size: 0.75rem;
             text-transform: uppercase;
+        }
+
+        .users-table th.sortable {
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .users-table th.sortable:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .users-table th.sortable span {
+            font-size: 0.65rem;
+            margin-left: 4px;
         }
 
         .users-table tr:hover {
@@ -691,8 +737,8 @@
                     src="../../assets/images/common/541994741_24566699099664215_389644405058898715_n.png" alt="logo"
                     class="logo" /></a>
             <div>
-                <p>Hôm nay</p>
-                <p>Bệnh gì</p>
+                <p>HerbMed</p>
+                <p>Thảo Dược Việt</p>
             </div>
         </div>
         <div class="header-center">
@@ -840,21 +886,38 @@
                 <div class="tab-content active" id="tab1">
                     <div class="charts-grid">
                         <div class="chart-card">
-                            <h3>📊 Phân bố Giới tính</h3>
+                            <div class="chart-card-header">
+                                <h3>📊 Phân bố Giới tính</h3>
+                                <button class="download-btn"
+                                    onclick="downloadChart('genderChart', 'phan-bo-gioi-tinh')">📥 Tải ảnh</button>
+                            </div>
                             <div class="chart-container"><canvas id="genderChart"></canvas></div>
                         </div>
                         <div class="chart-card">
-                            <h3>📈 Phân bố Độ tuổi</h3>
+                            <div class="chart-card-header">
+                                <h3>📈 Phân bố Độ tuổi</h3>
+                                <button class="download-btn" onclick="downloadChart('ageChart', 'phan-bo-do-tuoi')">📥
+                                    Tải ảnh</button>
+                            </div>
                             <div class="chart-container"><canvas id="ageChart"></canvas></div>
                         </div>
                         <div class="chart-card">
-                            <h3>📋 Nhóm bệnh trong hệ thống</h3>
+                            <div class="chart-card-header">
+                                <h3>📋 Nhóm bệnh trong hệ thống</h3>
+                                <button class="download-btn"
+                                    onclick="downloadChart('diseaseCategoryChart', 'nhom-benh')">📥 Tải ảnh</button>
+                            </div>
                             <div class="chart-container"><canvas id="diseaseCategoryChart"></canvas></div>
                         </div>
                     </div>
                     <div class="charts-grid" style="margin-top: 20px;">
                         <div class="chart-card span-3">
-                            <h3>📆 Đăng ký theo thời gian (30 ngày)</h3>
+                            <div class="chart-card-header">
+                                <h3>📆 Đăng ký theo thời gian (30 ngày)</h3>
+                                <button class="download-btn"
+                                    onclick="downloadChart('timelineChart', 'dang-ky-theo-thoi-gian')">📥 Tải
+                                    ảnh</button>
+                            </div>
                             <div class="chart-container tall"><canvas id="timelineChart"></canvas></div>
                         </div>
                     </div>
@@ -882,25 +945,45 @@
                     </div>
                     <div class="charts-grid">
                         <div class="chart-card">
-                            <h3>⚖️ Phân loại BMI</h3>
+                            <div class="chart-card-header">
+                                <h3>⚖️ Phân loại BMI</h3>
+                                <button class="download-btn" onclick="downloadChart('bmiChart', 'phan-loai-bmi')">📥 Tải
+                                    ảnh</button>
+                            </div>
                             <div class="chart-container"><canvas id="bmiChart"></canvas></div>
                         </div>
                         <div class="chart-card">
-                            <h3>🏥 Bệnh mãn tính phổ biến</h3>
+                            <div class="chart-card-header">
+                                <h3>🏥 Bệnh mãn tính phổ biến</h3>
+                                <button class="download-btn"
+                                    onclick="downloadChart('chronicDiseaseChart', 'benh-man-tinh')">📥 Tải ảnh</button>
+                            </div>
                             <div class="chart-container"><canvas id="chronicDiseaseChart"></canvas></div>
                         </div>
                         <div class="chart-card">
-                            <h3>🤧 Top 10 Dị ứng</h3>
+                            <div class="chart-card-header">
+                                <h3>🤧 Top 10 Dị ứng</h3>
+                                <button class="download-btn" onclick="downloadChart('allergyChart', 'top-di-ung')">📥
+                                    Tải ảnh</button>
+                            </div>
                             <div class="chart-container"><canvas id="allergyChart"></canvas></div>
                         </div>
                     </div>
                     <div class="charts-grid charts-grid-2" style="margin-top: 20px;">
                         <div class="chart-card">
-                            <h3>🌿 Top 10 Thảo dược tìm kiếm</h3>
+                            <div class="chart-card-header">
+                                <h3>🌿 Top 10 Thảo dược tìm kiếm</h3>
+                                <button class="download-btn" onclick="downloadChart('herbChart', 'top-thao-duoc')">📥
+                                    Tải ảnh</button>
+                            </div>
                             <div class="chart-container"><canvas id="herbChart"></canvas></div>
                         </div>
                         <div class="chart-card">
-                            <h3>🏥 Top 10 Bệnh phổ biến</h3>
+                            <div class="chart-card-header">
+                                <h3>🏥 Top 10 Bệnh phổ biến</h3>
+                                <button class="download-btn" onclick="downloadChart('diseaseChart', 'top-benh')">📥 Tải
+                                    ảnh</button>
+                            </div>
                             <div class="chart-container"><canvas id="diseaseChart"></canvas></div>
                         </div>
                     </div>
@@ -910,13 +993,21 @@
                 <div class="tab-content" id="tab3">
                     <div class="charts-grid">
                         <div class="chart-card span-3">
-                            <h3>📍 Phân bố theo Tỉnh/Thành (Top 15)</h3>
+                            <div class="chart-card-header">
+                                <h3>📍 Phân bố theo Tỉnh/Thành (Top 15)</h3>
+                                <button class="download-btn"
+                                    onclick="downloadChart('provinceChart', 'phan-bo-tinh-thanh')">📥 Tải ảnh</button>
+                            </div>
                             <div class="chart-container tall"><canvas id="provinceChart"></canvas></div>
                         </div>
                     </div>
                     <div class="charts-grid" style="margin-top: 20px;">
                         <div class="chart-card span-3">
-                            <h3>📊 Chỉ số rủi ro theo địa phương</h3>
+                            <div class="chart-card-header">
+                                <h3>📊 Chỉ số rủi ro theo địa phương</h3>
+                                <button class="download-btn" onclick="downloadChart('riskChart', 'chi-so-rui-ro')">📥
+                                    Tải ảnh</button>
+                            </div>
                             <div class="chart-container"><canvas id="riskChart"></canvas></div>
                         </div>
                     </div>
@@ -926,11 +1017,21 @@
                 <div class="tab-content" id="tab4">
                     <div class="charts-grid charts-grid-2">
                         <div class="chart-card">
-                            <h3>📈 Hoạt động đăng nhập (14 ngày)</h3>
+                            <div class="chart-card-header">
+                                <h3>📈 Hoạt động đăng nhập (14 ngày)</h3>
+                                <button class="download-btn"
+                                    onclick="downloadChart('loginActivityChart', 'hoat-dong-dang-nhap')">📥 Tải
+                                    ảnh</button>
+                            </div>
                             <div class="chart-container tall"><canvas id="loginActivityChart"></canvas></div>
                         </div>
                         <div class="chart-card">
-                            <h3>📊 So sánh Đăng ký vs Đăng nhập</h3>
+                            <div class="chart-card-header">
+                                <h3>📊 So sánh Đăng ký vs Đăng nhập</h3>
+                                <button class="download-btn"
+                                    onclick="downloadChart('comparisonChart', 'so-sanh-dang-ky-dang-nhap')">📥 Tải
+                                    ảnh</button>
+                            </div>
                             <div class="chart-container tall"><canvas id="comparisonChart"></canvas></div>
                         </div>
                     </div>
@@ -950,13 +1051,15 @@
                     <table class="users-table">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Người dùng</th>
+                                <th class="sortable" onclick="sortUsers('id')">ID <span id="sort-id">▼</span></th>
+                                <th class="sortable" onclick="sortUsers('username')">Người dùng <span
+                                        id="sort-username"></span></th>
                                 <th>Giới tính</th>
-                                <th>Tuổi</th>
-                                <th>BMI</th>
+                                <th class="sortable" onclick="sortUsers('age')">Tuổi <span id="sort-age"></span></th>
+                                <th class="sortable" onclick="sortUsers('bmi')">BMI <span id="sort-bmi"></span></th>
                                 <th>Địa điểm</th>
-                                <th>Ngày ĐK</th>
+                                <th class="sortable" onclick="sortUsers('created_at')">Ngày ĐK <span
+                                        id="sort-created_at"></span></th>
                             </tr>
                         </thead>
                         <tbody id="usersBody">
@@ -981,6 +1084,8 @@
     <script>
         const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:3000/api' : '/api';
         let allUsers = [], dashboardData = null, charts = {};
+        let currentSortColumn = 'created_at';
+        let currentSortOrder = 'desc';
 
         document.addEventListener('DOMContentLoaded', async () => {
             await loadDashboardData();
@@ -1282,7 +1387,62 @@
             });
 
             document.getElementById('filteredCount').textContent = filtered.length;
+
+            // Sort based on current sort settings
+            sortData(filtered);
+
             renderUsers(filtered);
+        }
+
+        function sortUsers(column) {
+            if (currentSortColumn === column) {
+                currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSortColumn = column;
+                currentSortOrder = 'desc';
+            }
+
+            // Update sort indicators
+            document.querySelectorAll('.sortable span').forEach(s => s.textContent = '');
+            const indicator = document.getElementById(`sort-${column}`);
+            if (indicator) indicator.textContent = currentSortOrder === 'asc' ? '▲' : '▼';
+
+            applyFilters();
+        }
+
+        function sortData(data) {
+            data.sort((a, b) => {
+                let valA, valB;
+
+                switch (currentSortColumn) {
+                    case 'id':
+                        valA = a.id || 0;
+                        valB = b.id || 0;
+                        break;
+                    case 'username':
+                        valA = (a.username || '').toLowerCase();
+                        valB = (b.username || '').toLowerCase();
+                        break;
+                    case 'age':
+                        valA = a.age || 0;
+                        valB = b.age || 0;
+                        break;
+                    case 'bmi':
+                        valA = (a.height && a.weight) ? a.weight / ((a.height / 100) ** 2) : 0;
+                        valB = (b.height && b.weight) ? b.weight / ((b.height / 100) ** 2) : 0;
+                        break;
+                    case 'created_at':
+                    default:
+                        valA = a.created_at ? new Date(a.created_at) : new Date(0);
+                        valB = b.created_at ? new Date(b.created_at) : new Date(0);
+                        break;
+                }
+
+                if (typeof valA === 'string') {
+                    return currentSortOrder === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA);
+                }
+                return currentSortOrder === 'asc' ? valA - valB : valB - valA;
+            });
         }
 
         function resetFilters() {
@@ -1314,6 +1474,34 @@
             html.setAttribute('data-theme', next);
             document.querySelector('.theme-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
             localStorage.setItem('theme', next);
+        }
+
+        // Download chart as PNG image
+        function downloadChart(chartId, filename) {
+            const canvas = document.getElementById(chartId);
+            if (!canvas) {
+                alert('Không tìm thấy đồ thị!');
+                return;
+            }
+
+            // Create a new canvas with white background
+            const tempCanvas = document.createElement('canvas');
+            const ctx = tempCanvas.getContext('2d');
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+
+            // Fill white background
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+            // Draw the chart on top
+            ctx.drawImage(canvas, 0, 0);
+
+            // Create download link
+            const link = document.createElement('a');
+            link.download = `${filename}_${new Date().toISOString().slice(0, 10)}.png`;
+            link.href = tempCanvas.toDataURL('image/png', 1.0);
+            link.click();
         }
 
         const savedTheme = localStorage.getItem('theme');

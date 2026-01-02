@@ -4,9 +4,368 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Về Chúng Tôi | Hôm Nay Bệnh Gì</title>
+    <title>Về Chúng Tôi | HerbMed - Thảo Dược Việt</title>
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="icon" type="image/x-icon" href="../assets/images/common/favicon.png">
+    <style>
+        /* Hero Section */
+        .about-hero {
+            background: linear-gradient(135deg, #0a991d 0%, #15803d 50%, #166534 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '🌿';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            right: -50px;
+            top: -30px;
+        }
+
+        .about-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .about-hero .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 50px 0;
+            align-items: center;
+        }
+
+        .mission-content h2 {
+            color: #166534;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .mission-content p {
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .mission-image {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .mission-image .icon {
+            font-size: 120px;
+        }
+
+        /* Features Grid */
+        .features-section {
+            background: #f8fafc;
+            padding: 60px 0;
+            margin: 40px -20px;
+        }
+
+        .features-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .features-section h2 {
+            text-align: center;
+            color: #166534;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(10, 153, 29, 0.12);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0a991d, #22c55e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            color: #166534;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Tech Stack */
+        .tech-section {
+            padding: 50px 0;
+        }
+
+        .tech-section h2 {
+            text-align: center;
+            color: #166534;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tech-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .tech-card:hover {
+            border-color: #0a991d;
+            background: #f0fdf4;
+        }
+
+        .tech-card .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .tech-card .tech-name {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #0a991d 0%, #15803d 100%);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 40px 0;
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .contact-item .icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form-wrapper {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .contact-form-wrapper h3 {
+            color: #166534;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0a991d;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #0a991d, #22c55e);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(10, 153, 29, 0.3);
+        }
+
+        /* Disclaimer */
+        .disclaimer-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .disclaimer-icon {
+            width: 50px;
+            height: 50px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .disclaimer-content h3 {
+            color: #b45309;
+            margin: 0 0 10px;
+        }
+
+        .disclaimer-content p {
+            color: #92400e;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* University Badge */
+        .university-badge {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .university-badge .badge-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .university-badge h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .university-badge p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+
+            .mission-section {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-section {
+                grid-template-columns: 1fr;
+                padding: 30px;
+            }
+
+            .disclaimer-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -15,15 +374,15 @@
                     src="../assets/images/common/541994741_24566699099664215_389644405058898715_n.png" alt="logo"
                     class="logo" /></a>
             <div>
-                <p>Hôm nay</p>
-                <p>Bệnh gì</p>
+                <p>HerbMed</p>
+                <p>Thảo Dược Việt</p>
             </div>
         </div>
         <div class="header-center">
             <div class="header-item"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor">
                     <path
                         d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
-                </svg>Nhóm 3</div>
+                </svg>USTH Students</div>
             <div class="header-item"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor">
                     <path
                         d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
@@ -46,7 +405,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a class="dropbtn">Thuốc</a>
+                <a class="dropbtn">Điều Trị</a>
                 <ul class="dropdown-menu">
                     <li><a href="treatments/thao-duoc.html">Thảo Dược</a></li>
                     <li><a href="treatments/thuoc-tay.html">Thuốc Tây</a></li>
@@ -61,65 +420,154 @@
         </ul>
     </nav>
 
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <h1>🌿 HerbMed - Thảo Dược Việt</h1>
+        <p class="subtitle">Dự án tra cứu thông tin y học cổ truyền và thuốc Tây được phát triển bởi nhóm sinh viên USTH
+        </p>
+    </section>
+
     <main class="container">
-        <h1 class="section-title">Về Chúng Tôi</h1>
-
-        <section class="section">
-            <h2>Giới thiệu</h2>
-            <p><strong>"Hôm Nay Bệnh Gì"</strong> là dự án được thực hiện bởi Nhóm 3 - sinh viên ngành ICT/DS/CS tại
-                Trường Đại học Khoa học và Công nghệ Hà Nội (USTH).</p>
-            <p>Website cung cấp thông tin về các loại bệnh thường gặp và các phương pháp điều trị bằng thuốc Tây và thảo
-                dược, giúp người dùng có kiến thức cơ bản để chăm sóc sức khỏe bản thân và gia đình.</p>
+        <!-- University Badge -->
+        <section class="university-badge">
+            <div class="badge-icon">🎓</div>
+            <h3>Nhóm Sinh Viên ICT/DS/CS</h3>
+            <p>Trường Đại học Khoa học và Công nghệ Hà Nội (USTH)</p>
         </section>
 
-        <section class="section">
-            <h2>Mục tiêu</h2>
-            <ul>
-                <li>Cung cấp thông tin y khoa dễ hiểu cho người Việt Nam</li>
-                <li>Hỗ trợ tra cứu thông tin về bệnh và thuốc điều trị</li>
-                <li>Nâng cao nhận thức về sức khỏe cộng đồng</li>
-                <li>Tạo nền tảng tham khảo y khoa đáng tin cậy</li>
-            </ul>
+        <!-- Mission Section -->
+        <section class="mission-section">
+            <div class="mission-content">
+                <h2>🎯 Sứ Mệnh Của Chúng Tôi</h2>
+                <p><strong>HerbMed</strong> ra đời với mong muốn mang đến cho người Việt Nam một nền tảng tra cứu thông
+                    tin y khoa đáng tin cậy, kết hợp giữa y học hiện đại và y học cổ truyền.</p>
+                <p>Chúng tôi tin rằng mọi người đều có quyền tiếp cận kiến thức y tế chính xác và dễ hiểu để chăm sóc
+                    sức khỏe bản thân và gia đình một cách hiệu quả.</p>
+                <p>Dự án được xây dựng như một phần của chương trình học tập tại USTH, với sự đam mê công nghệ và y học
+                    của các thành viên trong nhóm.</p>
+            </div>
+            <div class="mission-image">
+                <div class="icon">🌱</div>
+            </div>
         </section>
 
-        <section class="section">
-            <h2>Thành viên nhóm</h2>
-            <div class="category-grid">
-                <div class="category-card">
-                    <h3>Thành viên 1</h3>
-                    <p>Sinh viên USTH</p>
-                </div>
-                <div class="category-card">
-                    <h3>Thành viên 2</h3>
-                    <p>Sinh viên USTH</p>
-                </div>
-                <div class="category-card">
-                    <h3>Thành viên 3</h3>
-                    <p>Sinh viên USTH</p>
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <h2>✨ Tính Năng Nổi Bật</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Tra Cứu Thông Minh</h3>
+                        <p>Tìm kiếm nhanh chóng thông tin về bệnh, thuốc và thảo dược với gợi ý tự động</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌿</div>
+                        <h3>Thư Viện Thảo Dược</h3>
+                        <p>Hơn 37 loại thảo dược Việt Nam với công dụng và cách sử dụng chi tiết</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💊</div>
+                        <h3>Thuốc Tây Y</h3>
+                        <p>Thông tin thuốc Tây điều trị theo từng nhóm bệnh lý</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Chatbot AI</h3>
+                        <p>Hỏi đáp tự động với trợ lý AI về các vấn đề sức khỏe</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="section">
-            <h2>Liên hệ</h2>
-            <p>Email: <a href="mailto:nhom3@usth.edu.vn">nhom3@usth.edu.vn</a></p>
-            <p>Địa chỉ: Trường Đại học Khoa học và Công nghệ Hà Nội (USTH)</p>
+        <!-- Tech Stack -->
+        <section class="tech-section">
+            <h2>🛠️ Công Nghệ Sử Dụng</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">🌐</div>
+                    <div class="tech-name">HTML/CSS/JS</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">⚡</div>
+                    <div class="tech-name">Node.js</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🐍</div>
+                    <div class="tech-name">Python</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🗄️</div>
+                    <div class="tech-name">PostgreSQL</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🤖</div>
+                    <div class="tech-name">OpenAI API</div>
+                </div>
+            </div>
         </section>
 
-        <section class="section">
-            <div class="warning-box">
-                <h3>Tuyên bố miễn trừ trách nhiệm</h3>
-                <p>Thông tin trên website chỉ mang tính chất tham khảo và giáo dục. Không thay thế cho tư vấn, chẩn đoán
-                    hoặc điều trị y tế chuyên nghiệp. Luôn tham khảo ý kiến bác sĩ trước khi sử dụng bất kỳ loại thuốc
-                    nào.</p>
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="contact-info">
+                <h2>📬 Liên Hệ Với Chúng Tôi</h2>
+                <div class="contact-item">
+                    <div class="icon">✉️</div>
+                    <div>
+                        <strong>Email</strong><br>
+                        <a href="mailto:anttn.22ba13032@usth.edu.vn">anttn.22ba13032@usth.edu.vn</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">🏫</div>
+                    <div>
+                        <strong>Địa chỉ</strong><br>
+                        Trường ĐH Khoa học và Công nghệ Hà Nội (USTH)<br>
+                        18 Hoàng Quốc Việt, Cầu Giấy, Hà Nội
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">🌐</div>
+                    <div>
+                        <strong>Website trường</strong><br>
+                        <a href="https://usth.edu.vn" target="_blank">usth.edu.vn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <h3>💬 Gửi Tin Nhắn</h3>
+                <form action="mailto:anttn.22ba13032@usth.edu.vn" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Họ và tên" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email của bạn" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Nội dung tin nhắn..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Gửi Tin Nhắn</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Disclaimer -->
+        <section class="disclaimer-section">
+            <div class="disclaimer-icon">⚠️</div>
+            <div class="disclaimer-content">
+                <h3>Tuyên Bố Miễn Trừ Trách Nhiệm</h3>
+                <p>Thông tin trên website <strong>HerbMed</strong> chỉ mang tính chất tham khảo và giáo dục. Không thay
+                    thế cho tư vấn, chẩn đoán hoặc điều trị y tế chuyên nghiệp. Luôn tham khảo ý kiến bác sĩ hoặc nhân
+                    viên y tế có chuyên môn trước khi sử dụng bất kỳ loại thuốc nào. Nếu có triệu chứng nghiêm trọng,
+                    hãy đến cơ sở y tế ngay lập tức.</p>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
         <div class="container footer__inner">
-            <div class="footer__brand">© <span id="year">2025</span> Hôm Nay Bệnh Gì</div><a class="footer__link"
-                href="ve-chung-toi.html">Về chúng tôi</a>
+            <div class="footer__brand">© <span id="year">2025</span> HerbMed - Thảo Dược Việt</div>
+            <a class="footer__link" href="ve-chung-toi.html">Về chúng tôi</a>
         </div>
     </footer>
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>

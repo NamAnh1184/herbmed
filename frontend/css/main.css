@@ -829,3 +829,29 @@ form {
 .site-header .btn-outline:hover {
   background: rgba(255, 255, 255, .12);
 }
+
+/* =====================================================
+   SYNONYM SEARCH INFO
+   ===================================================== */
+.search-synonym-info {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-bottom: 1px solid #bbf7d0;
+  font-size: 12px;
+  color: #166534;
+}
+
+.search-synonym-info span {
+  display: inline-block;
+  background: #bbf7d0;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin: 0 2px;
+  font-weight: 500;
+}
+
+.search-hint {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 8px !important;
+}

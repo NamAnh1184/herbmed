@@ -4,9 +4,247 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tài Liệu Tham Khảo | Hôm Nay Bệnh Gì</title>
+    <title>Tài Liệu Tham Khảo | HerbMed - Thảo Dược Việt</title>
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="icon" type="image/x-icon" href="../assets/images/common/favicon.png">
+    <style>
+        /* Hero Section for Documentation */
+        .doc-hero {
+            background: linear-gradient(135deg, #0a991d 0%, #15803d 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .doc-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .doc-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Source Cards Grid */
+        .source-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .source-category {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .source-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(10, 153, 29, 0.15);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0a991d, #22c55e);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .category-title {
+            margin: 0;
+            font-size: 1.3rem;
+            color: #166534;
+        }
+
+        .category-subtitle {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 3px;
+        }
+
+        .source-list {
+            padding: 20px 25px;
+            list-style: none;
+            margin: 0;
+        }
+
+        .source-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .source-item:last-child {
+            border-bottom: none;
+        }
+
+        .source-item::before {
+            content: '🔗';
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .source-item a {
+            color: #0a991d;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .source-item a:hover {
+            color: #15803d;
+            text-decoration: underline;
+        }
+
+        .source-item .desc {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 3px;
+        }
+
+        /* Warning Box */
+        .warning-section {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border: 2px solid #fb923c;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .warning-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .warning-content h3 {
+            color: #c2410c;
+            margin: 0 0 10px;
+            font-size: 1.3rem;
+        }
+
+        .warning-content p {
+            color: #9a3412;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0a991d;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-section h2 {
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        .contact-section p {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #0a991d, #22c55e);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(10, 153, 29, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .doc-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .source-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .warning-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -15,8 +253,8 @@
                     src="../assets/images/common/541994741_24566699099664215_389644405058898715_n.png" alt="logo"
                     class="logo" /></a>
             <div>
-                <p>Hôm nay</p>
-                <p>Bệnh gì</p>
+                <p>HerbMed</p>
+                <p>Thảo Dược Việt</p>
             </div>
         </div>
         <div class="header-center">
@@ -46,7 +284,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a class="dropbtn">Thuốc</a>
+                <a class="dropbtn">Điều Trị</a>
                 <ul class="dropdown-menu">
                     <li><a href="treatments/thao-duoc.html">Thảo Dược</a></li>
                     <li><a href="treatments/thuoc-tay.html">Thuốc Tây</a></li>
@@ -61,53 +299,185 @@
         </ul>
     </nav>
 
+    <!-- Hero Section -->
+    <section class="doc-hero">
+        <h1>📚 Tài Liệu Tham Khảo</h1>
+        <p>Thông tin y khoa trên HerbMed được tổng hợp từ các nguồn uy tín trong nước và quốc tế</p>
+    </section>
+
     <main class="container">
-        <h1 class="section-title">Tài Liệu Tham Khảo</h1>
-
-        <section class="section">
-            <h2>Nguồn Thông Tin Y Khoa</h2>
-            <p>Thông tin trên website được tổng hợp từ các nguồn uy tín sau:</p>
-
-            <h3>Tổ chức Y tế</h3>
-            <ul>
-                <li><a href="https://www.who.int" target="_blank">World Health Organization (WHO)</a> - Tổ chức Y tế Thế
-                    giới</li>
-                <li><a href="https://www.cdc.gov" target="_blank">Centers for Disease Control and Prevention (CDC)</a>
-                </li>
-                <li><a href="https://moh.gov.vn" target="_blank">Bộ Y tế Việt Nam</a></li>
-            </ul>
-
-            <h3>Cơ sở dữ liệu thuốc</h3>
-            <ul>
-                <li><a href="https://www.drugs.com" target="_blank">Drugs.com</a> - Thông tin thuốc toàn diện</li>
-                <li><a href="https://www.webmd.com" target="_blank">WebMD</a> - Thông tin y tế và thuốc</li>
-                <li><a href="https://medlineplus.gov" target="_blank">MedlinePlus</a> - Thư viện Y học Quốc gia Hoa Kỳ
-                </li>
-            </ul>
-
-            <h3>Tạp chí Y khoa</h3>
-            <ul>
-                <li><a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank">PubMed</a> - Cơ sở dữ liệu nghiên cứu y
-                    sinh</li>
-                <li><a href="https://www.nejm.org" target="_blank">New England Journal of Medicine</a></li>
-                <li><a href="https://www.thelancet.com" target="_blank">The Lancet</a></li>
-            </ul>
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Nguồn tham khảo</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Bệnh lý</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">37+</div>
+                <div class="stat-label">Thảo dược</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Thuốc Tây</div>
+            </div>
         </section>
 
-        <section class="section">
-            <h2>Lưu ý quan trọng</h2>
-            <div class="warning-box">
-                <p><strong>Thông tin trên website chỉ mang tính chất tham khảo.</strong></p>
-                <p>Không thay thế cho tư vấn, chẩn đoán hoặc điều trị y tế chuyên nghiệp. Luôn tham khảo ý kiến bác sĩ
-                    hoặc nhân viên y tế có chuyên môn trước khi sử dụng bất kỳ loại thuốc nào.</p>
+        <!-- Source Categories -->
+        <section class="source-grid">
+            <!-- Tổ chức Y tế -->
+            <div class="source-category">
+                <div class="category-header">
+                    <div class="category-icon">🏥</div>
+                    <div>
+                        <h3 class="category-title">Tổ Chức Y Tế</h3>
+                        <div class="category-subtitle">Các cơ quan y tế hàng đầu thế giới</div>
+                    </div>
+                </div>
+                <ul class="source-list">
+                    <li class="source-item">
+                        <div>
+                            <a href="https://www.who.int" target="_blank">World Health Organization (WHO)</a>
+                            <div class="desc">Tổ chức Y tế Thế giới - Nguồn thông tin y tế toàn cầu</div>
+                        </div>
+                    </li>
+                    <li class="source-item">
+                        <div>
+                            <a href="https://www.cdc.gov" target="_blank">CDC (Centers for Disease Control)</a>
+                            <div class="desc">Trung tâm Kiểm soát và Phòng ngừa Dịch bệnh Hoa Kỳ</div>
+                        </div>
+                    </li>
+                    <li class="source-item">
+                        <div>
+                            <a href="https://moh.gov.vn" target="_blank">Bộ Y tế Việt Nam</a>
+                            <div class="desc">Cơ quan quản lý y tế cao nhất của Việt Nam</div>
+                        </div>
+                    </li>
+                </ul>
             </div>
+
+            <!-- Cơ sở dữ liệu thuốc -->
+            <div class="source-category">
+                <div class="category-header">
+                    <div class="category-icon">💊</div>
+                    <div>
+                        <h3 class="category-title">Cơ Sở Dữ Liệu Thuốc</h3>
+                        <div class="category-subtitle">Tra cứu thông tin thuốc chi tiết</div>
+                    </div>
+                </div>
+                <ul class="source-list">
+                    <li class="source-item">
+                        <div>
+                            <a href="https://www.drugs.com" target="_blank">Drugs.com</a>
+                            <div class="desc">Cơ sở dữ liệu thuốc toàn diện với thông tin liều dùng</div>
+                        </div>
+                    </li>
+                    <li class="source-item">
+                        <div>
+                            <a href="https://www.webmd.com" target="_blank">WebMD</a>
+                            <div class="desc">Thông tin y tế và thuốc dễ hiểu cho người dùng</div>
+                        </div>
+                    </li>
+                    <li class="source-item">
+                        <div>
+                            <a href="https://medlineplus.gov" target="_blank">MedlinePlus</a>
+                            <div class="desc">Thư viện Y học Quốc gia Hoa Kỳ - Nguồn miễn phí</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Tạp chí Y khoa -->
+            <div class="source-category">
+                <div class="category-header">
+                    <div class="category-icon">📖</div>
+                    <div>
+                        <h3 class="category-title">Tạp Chí Y Khoa</h3>
+                        <div class="category-subtitle">Nghiên cứu khoa học được bình duyệt</div>
+                    </div>
+                </div>
+                <ul class="source-list">
+                    <li class="source-item">
+                        <div>
+                            <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank">PubMed</a>
+                            <div class="desc">Cơ sở dữ liệu nghiên cứu y sinh lớn nhất thế giới</div>
+                        </div>
+                    </li>
+                    <li class="source-item">
+                        <div>
+                            <a href="https://www.nejm.org" target="_blank">New England Journal of Medicine</a>
+                            <div class="desc">Tạp chí y khoa uy tín hàng đầu</div>
+                        </div>
+                    </li>
+                    <li class="source-item">
+                        <div>
+                            <a href="https://www.thelancet.com" target="_blank">The Lancet</a>
+                            <div class="desc">Tạp chí y khoa quốc tế có ảnh hưởng lớn</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Y học cổ truyền -->
+            <div class="source-category">
+                <div class="category-header">
+                    <div class="category-icon">🌿</div>
+                    <div>
+                        <h3 class="category-title">Y Học Cổ Truyền</h3>
+                        <div class="category-subtitle">Thảo dược và đông y Việt Nam</div>
+                    </div>
+                </div>
+                <ul class="source-list">
+                    <li class="source-item">
+                        <div>
+                            <a href="https://www.vinmec.com" target="_blank">Vinmec</a>
+                            <div class="desc">Hệ thống y tế hàng đầu Việt Nam</div>
+                        </div>
+                    </li>
+                    <li class="source-item">
+                        <div>
+                            <a href="https://nhathuoclongchau.com.vn" target="_blank">Nhà Thuốc Long Châu</a>
+                            <div class="desc">Thông tin thảo dược và thuốc đông y</div>
+                        </div>
+                    </li>
+                    <li class="source-item">
+                        <div>
+                            <a href="https://www.thuocdantoc.org" target="_blank">Thuốc Dân Tộc</a>
+                            <div class="desc">Kiến thức y học cổ truyền dân gian</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Warning Section -->
+        <section class="warning-section">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-content">
+                <h3>Lưu Ý Quan Trọng</h3>
+                <p><strong>Thông tin trên website chỉ mang tính chất tham khảo.</strong> Không thay thế cho tư vấn, chẩn
+                    đoán hoặc điều trị y tế chuyên nghiệp. Luôn tham khảo ý kiến bác sĩ hoặc nhân viên y tế có chuyên
+                    môn trước khi sử dụng bất kỳ loại thuốc nào. Nếu bạn có triệu chứng nghiêm trọng, hãy đến cơ sở y tế
+                    gần nhất ngay lập tức.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2>🤝 Đóng Góp Thông Tin</h2>
+            <p>Nếu bạn phát hiện thông tin không chính xác hoặc muốn đề xuất nguồn tài liệu mới, vui lòng liên hệ với
+                chúng tôi.</p>
+            <a href="ve-chung-toi.html" class="contact-btn">Liên Hệ Ngay</a>
         </section>
     </main>
 
     <footer class="site-footer">
         <div class="container footer__inner">
-            <div class="footer__brand">© <span id="year">2025</span> Hôm Nay Bệnh Gì</div><a class="footer__link"
-                href="ve-chung-toi.html">Về chúng tôi</a>
+            <div class="footer__brand">© <span id="year">2025</span> HerbMed - Thảo Dược Việt</div>
+            <a class="footer__link" href="ve-chung-toi.html">Về chúng tôi</a>
         </div>
     </footer>
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>

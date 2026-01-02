@@ -51,13 +51,13 @@ const TEMPLATE_HEAD = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{TITLE}} | Hôm Nay Bệnh Gì</title>
+  <title>{{TITLE}} | HerbMed - Thảo Dược Việt</title>
   <link rel="stylesheet" href="../../css/main.css" />
   <link rel="icon" type="image/x-icon" href="../../assets/images/common/favicon.png">
 </head>
 <body>
   <header class="header">
-    <div class="header-left"><a href="../../index.html"><img src="../../assets/images/common/541994741_24566699099664215_389644405058898715_n.png" alt="logo" class="logo" /></a><div><p>Hôm nay</p><p>Bệnh gì</p></div></div>
+    <div class="header-left"><a href="../../index.html"><img src="../../assets/images/common/541994741_24566699099664215_389644405058898715_n.png" alt="logo" class="logo" /></a><div><p>HerbMed</p><p>Thảo Dược Việt</p></div></div>
     <div class="header-center"><div class="header-item"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg>Nhóm 3</div><div class="header-item"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="15" fill="currentColor"><path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/></svg>ICT/DS/CS USTH</div></div>
     <div class="header-right"><div class="search-container"><input type="text" id="searchInput" placeholder="Tìm Kiếm..."><button id="searchButton" class="search-btn">Tìm Kiếm</button><div id="suggestions" class="suggest-box"></div></div></div>
   </header>
@@ -73,7 +73,7 @@ const TEMPLATE_HEAD = `<!DOCTYPE html>
 `;
 
 const TEMPLATE_FOOTER = `
-  <footer class="site-footer"><div class="container footer__inner"><div class="footer__brand">© <span id="year">2025</span> Hôm Nay Bệnh Gì</div><a class="footer__link" href="../ve-chung-toi.html">Về chúng tôi</a></div></footer>
+  <footer class="site-footer"><div class="container footer__inner"><div class="footer__brand">© <span id="year">2025</span> HerbMed - Thảo Dược Việt</div><a class="footer__link" href="../ve-chung-toi.html">Về chúng tôi</a></div></footer>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   <script src="../../js/search.js"></script>
   <script src="../../js/auth.js"></script>
