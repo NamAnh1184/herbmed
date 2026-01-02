@@ -715,95 +715,189 @@ form {
 /* =====================================================
    RESPONSIVE
    ===================================================== */
-@media (min-width: 680px) {
-  .card {
-    grid-column: span 6;
-  }
+/* =====================================================
+   RESPONSIVE DESIGN IMPROVEMENTS
+   ===================================================== */
+
+/* Mobile Navigation Toggle (Hamburger) */
+.nav__toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
 }
 
-@media (min-width: 980px) {
-  .nav__toggle {
-    display: none;
-  }
+@media (max-width: 900px) {
 
-  .nav__menu {
-    display: flex;
-  }
-
-  .card {
-    grid-column: span 4;
-  }
-}
-
-@media (max-width: 979.98px) {
-  .nav__toggle {
-    display: inline-block;
-  }
-
-  .nav__menu {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 64px;
-    background: var(--brand);
-    flex-direction: column;
-    padding: 10px;
-    display: none;
-  }
-
-  .nav__menu.is-open {
-    display: flex;
-  }
-
-  .nav__item {
-    width: 100%;
-  }
-
-  .nav__search .search {
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .nav-left,
-  .nav-right {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
+  /* Header Adjustments */
   .header {
     flex-direction: column;
     align-items: flex-start;
+    padding: 15px 20px;
+    gap: 15px;
+  }
+
+  .header-left {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
   }
 
   .header-center {
+    display: none;
+    /* Hide institution info on mobile to save space */
+  }
+
+  .header-right {
+    width: 100%;
+  }
+
+  .search-container {
+    width: 100%;
+    display: flex;
+  }
+
+  #searchInput {
+    width: 100%;
+    flex: 1;
+  }
+
+  /* Navbar Adjustments */
+  .navbar {
+    padding: 15px 20px;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .nav__toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+  /* Hide menus by default on mobile */
+  .nav-left,
+  .nav-right {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Show menus when .mobile-open class is added */
+  .navbar.mobile-open .nav-left,
+  .navbar.mobile-open .nav-right {
+    display: flex;
+  }
+
+  .nav-left li a,
+  .nav-right li a {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+  }
+
+  .dropdown-menu {
+    position: static;
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+    padding-left: 20px;
+    display: none;
+    /* Keep hidden until hovered/active - simplified for mobile */
+  }
+
+  /* Show dropdown on hover/click in mobile - simplifying interaction */
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu li a {
+    color: white;
+    padding: 10px 0;
+  }
+
+  .dropdown-menu li a:hover {
+    background: transparent;
+    text-decoration: underline;
+  }
+
+  .btn.white {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    display: inline-block;
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: auto;
+    padding: 60px 20px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
     flex-direction: column;
     width: 100%;
   }
 
-  .header-right input {
-    width: 160px;
+  .hero-btn {
+    width: 100%;
+    text-align: center;
   }
 
+  /* General Typography & Spacing */
   .section h1,
   .section h2,
-  .section h3,
-  .section h4,
-  .section h5,
-  .section h6 {
-    font-size: 26px;
+  .section h3 {
+    font-size: 1.8rem;
   }
 
-  .section p,
-  .section ul {
-    font-size: 16px;
+  .section-title {
+    font-size: 24px;
+    margin-top: 20px;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .category-grid,
+  .card-grid {
+    grid-template-columns: 1fr;
+    /* Single column */
+  }
+
+  /* Footer */
+  .footer__inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
   }
 }
+
+.section p,
+.section ul {
+  font-size: 16px;
+}
+
 
 /* =====================================================
    SITE HEADER BUTTONS
