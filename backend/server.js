@@ -12,8 +12,24 @@ require('dotenv').config();
 const app = express();
 
 // ====== MIDDLEWARE ======
-app.use(cors());
+// CORS configuration for production
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:5500',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:5500',
+    'https://herbmed-23yn.vercel.app',
+    'https://herbmed.vercel.app',
+    /\.vercel\.app$/  // Allow all Vercel preview deployments
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+app.use(cors(corsOptions));
 app.use(express.json());
+
 
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, '../frontend')));
