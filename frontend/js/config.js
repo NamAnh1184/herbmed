@@ -19,21 +19,22 @@
     const config = {
         // Backend API (Node.js/Express on Railway)
         // Local: http://localhost:3000/api
-        // Production: https://your-backend.railway.app/api
+        // Production: https://herbmed-production.up.railway.app/api
         API_BASE_URL: isLocalhost
             ? 'http://localhost:3000/api'
-            : (window.HERBMED_API_URL || '/api'),
+            : (window.HERBMED_API_URL || 'https://herbmed-production.up.railway.app/api'),
 
         // Chatbot API (Python/Flask on Railway)  
         // Local: http://localhost:5000/api
-        // Production: https://your-chatbot.railway.app/api
+        // Production: Tạm thời disable - chờ deploy chatbot
         CHATBOT_API_URL: isLocalhost
             ? 'http://localhost:5000/api'
-            : (window.HERBMED_CHATBOT_URL || 'https://your-chatbot.railway.app/api'),
+            : (window.HERBMED_CHATBOT_URL || 'http://localhost:5000/api'),
 
         // Debug mode
         DEBUG: isLocalhost
     };
+
 
     // Expose to global scope
     window.HerbMedConfig = config;
