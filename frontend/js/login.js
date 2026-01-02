@@ -2,6 +2,12 @@
 // LOGIN.JS - Handle login form submission
 // =====================================================
 
+// API Configuration
+const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE_URL = isLocalhost
+    ? 'http://localhost:3000/api'
+    : 'https://herbmed-production.up.railway.app/api';
+
 // Toggle password visibility
 function togglePwd(id, btn) {
     const el = document.getElementById(id);
@@ -45,13 +51,14 @@ form?.addEventListener('submit', async (e) => {
     if (!ok) return;
 
     try {
-        const res = await fetch('http://localhost:3000/api/login', {
+        const res = await fetch(`${API_BASE_URL}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
         });
 
         const data = await res.json();
+
 
         if (!res.ok) {
             alert('Đăng nhập thất bại: ' + (data.message || 'Lỗi không xác định'));

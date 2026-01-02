@@ -2,6 +2,11 @@
 // PROFILE.JS - Handle user profile view and update
 // =====================================================
 
+// API Configuration
+const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE_URL = isLocalhost
+    ? 'http://localhost:3000/api'
+    : 'https://herbmed-production.up.railway.app/api';
 // Get base path for navigation
 function getBasePath() {
     const path = window.location.pathname;
@@ -41,7 +46,7 @@ async function loadProfile() {
     }
 
     try {
-        const res = await fetch(`http://localhost:3000/api/profile/${userId}`);
+        const res = await fetch(`${API_BASE_URL}/profile/${userId}`);
         const data = await res.json();
 
         if (!res.ok) {
@@ -105,7 +110,7 @@ async function handleSubmit(e) {
     };
 
     try {
-        const res = await fetch(`http://localhost:3000/api/profile/${userId}`, {
+        const res = await fetch(`${API_BASE_URL}/profile/${userId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(profileData)
