@@ -435,25 +435,30 @@ def get_stats():
     })
 
 # ============================================================
-# MAIN
+# LOAD CHATBOT ON MODULE IMPORT (for gunicorn)
+# ============================================================
+# This ensures chatbot is loaded when gunicorn imports the module
+print("🚀 Đang khởi động Medical Chatbot API Server...")
+
+# Get the directory where this script is located
+_script_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(_script_dir)
+
+# Load chatbot on module import
+if load_chatbot("./saved_model"):
+    print("🏥 Medical Chatbot API đã sẵn sàng!")
+else:
+    print("⚠️ Chatbot không tải được. API sẽ trả về lỗi cho đến khi model được tải.")
+
+# ============================================================
+# MAIN (for local development with python chatbot_api.py)
 # ============================================================
 if __name__ == '__main__':
-    print("🚀 Đang khởi động Medical Chatbot API Server...")
-    
-    # Get the directory where this script is located
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(script_dir)
-    
-    # Load chatbot on startup
-    if load_chatbot("./saved_model"):
-        print("🏥 Medical Chatbot API đã sẵn sàng!")
-    else:
-        print("⚠️ Chatbot không tải được. API sẽ trả về lỗi cho đến khi model được tải.")
-    
     # Get port from environment variable (Railway sets this automatically)
     port = int(os.getenv('PORT', 5000))
     
     # Run Flask app
     print(f"🌐 Server đang chạy tại http://0.0.0.0:{port}")
     app.run(host='0.0.0.0', port=port, debug=False)
+
 
