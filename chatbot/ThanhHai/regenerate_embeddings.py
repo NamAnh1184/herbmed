@@ -78,7 +78,7 @@ def main():
     
     # Also create embeddings for docs
     print("\n🔄 Đang tạo embeddings cho documents...")
-    for i, doc in enumerate(docs[:100]):  # Limit to first 100 docs for speed
+    for i, doc in enumerate(docs):  # Process ALL docs
         text = doc.get('text', '')[:1000]  # Limit text length
         title = doc.get('title', '')
         
@@ -113,7 +113,11 @@ def main():
     # Save embeddings
     print("\n💾 Đang lưu embeddings...")
     
-    # Backup old files
+    # Backup old files (remove old backups first)
+    if os.path.exists('saved_model/qa_embeddings_backup.pkl'):
+        os.remove('saved_model/qa_embeddings_backup.pkl')
+    if os.path.exists('saved_model/embedding_cache_backup.pkl'):
+        os.remove('saved_model/embedding_cache_backup.pkl')
     if os.path.exists('saved_model/qa_embeddings.pkl'):
         os.rename('saved_model/qa_embeddings.pkl', 'saved_model/qa_embeddings_backup.pkl')
     if os.path.exists('saved_model/embedding_cache.pkl'):

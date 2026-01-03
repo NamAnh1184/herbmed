@@ -3,7 +3,7 @@ builder = "nixpacks"
 watchPatterns = ["chatbot_api.py", "requirements.txt", "saved_model/**"]
 
 [deploy]
-startCommand = "python chatbot_api.py"
+startCommand = "gunicorn chatbot_api:app --bind 0.0.0.0:$PORT --workers 1 --timeout 120"
 healthcheckPath = "/api/health"
 healthcheckTimeout = 100
 restartPolicyType = "on_failure"

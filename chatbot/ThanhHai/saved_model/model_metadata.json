@@ -1,6 +1,6 @@
 {
-  "qa_count": 1305,
-  "embedding_count": 1405,
+  "qa_count": 55,
+  "embedding_count": 603,
   "model": "text-embedding-3-small",
   "updated": true
 }
