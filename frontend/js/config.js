@@ -26,10 +26,10 @@
 
         // Chatbot API (Python/Flask on Railway)  
         // Local: http://localhost:5000/api
-        // Production: Tạm thời disable - chờ deploy chatbot
+        // Production: https://practical-energy-production-05a5.up.railway.app/api
         CHATBOT_API_URL: isLocalhost
             ? 'http://localhost:5000/api'
-            : (window.HERBMED_CHATBOT_URL || 'http://localhost:5000/api'),
+            : (window.HERBMED_CHATBOT_URL || 'https://practical-energy-production-05a5.up.railway.app/api'),
 
         // Debug mode
         DEBUG: isLocalhost

@@ -10,9 +10,18 @@
     // ============================================================
     // CONFIGURATION
     // ============================================================
+
+    // Use HerbMedConfig if available, otherwise fallback to localhost
+    const getChatbotBaseUrl = () => {
+        if (window.HerbMedConfig && window.HerbMedConfig.CHATBOT_API_URL) {
+            return window.HerbMedConfig.CHATBOT_API_URL;
+        }
+        return 'http://localhost:5000/api';
+    };
+
     const CONFIG = {
-        apiUrl: 'http://localhost:5000/api/chat',
-        healthUrl: 'http://localhost:5000/api/health',
+        get apiUrl() { return getChatbotBaseUrl() + '/chat'; },
+        get healthUrl() { return getChatbotBaseUrl() + '/health'; },
         maxRetries: 2,
         retryDelay: 1000,
         requireLogin: true  // Set to false to disable login requirement
