@@ -537,15 +537,15 @@
             </div>
             <div class="contact-form-wrapper">
                 <h3>💬 Gửi Tin Nhắn</h3>
-                <form action="mailto:anttn.22ba13032@usth.edu.vn" method="post" enctype="text/plain">
+                <form id="contactForm" onsubmit="sendEmail(event)">
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Họ và tên" required>
+                        <input type="text" id="senderName" placeholder="Họ và tên" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" placeholder="Email của bạn" required>
+                        <input type="email" id="senderEmail" placeholder="Email của bạn" required>
                     </div>
                     <div class="form-group">
-                        <textarea name="message" placeholder="Nội dung tin nhắn..." required></textarea>
+                        <textarea id="senderMessage" placeholder="Nội dung tin nhắn..." required></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Gửi Tin Nhắn</button>
                 </form>
@@ -571,7 +571,23 @@
             <a class="footer__link" href="ve-chung-toi.html">Về chúng tôi</a>
         </div>
     </footer>
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();
+
+        function sendEmail(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('senderName').value;
+            const email = document.getElementById('senderEmail').value;
+            const message = document.getElementById('senderMessage').value;
+
+            const subject = encodeURIComponent(`[HerbMed] Tin nhắn từ ${name}`);
+            const body = encodeURIComponent(`Họ và tên: ${name}\nEmail: ${email}\n\nNội dung tin nhắn:\n${message}`);
+
+            const mailtoLink = `mailto:anttn.22ba13032@usth.edu.vn?subject=${subject}&body=${body}`;
+
+            window.location.href = mailtoLink;
+        }
+    </script>
     <script src="../js/search.js"></script>
     <script src="../js/mobile-menu.js"></script>
     <script src="../js/auth.js"></script>
