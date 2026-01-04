@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="user-box">
       <span class="welcome-text">Hello, <strong>${escapeHTML(username)}</strong>${userRole === 'admin' ? ' <span style="color:#dc2626;font-size:0.8em;">(Admin)</span>' : ''}</span>
       <a href="${basePath}pages/auth/ho-so.html" class="profile-btn">Hồ Sơ</a>
-      <button type="button" class="logout-btn">Logout</button>
+      <button type="button" class="logout-btn">Đăng xuất</button>
     </div>
   `;
   navRight.appendChild(li);
