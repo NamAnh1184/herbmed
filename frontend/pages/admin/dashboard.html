@@ -1395,6 +1395,213 @@
             sortData(filtered);
 
             renderUsers(filtered);
+
+            // Update charts with filtered data
+            updateChartsWithFilteredData(filtered);
+        }
+
+        // Calculate distributions from filtered users for charts
+        function calculateGenderDistribution(users) {
+            const counts = {};
+            users.forEach(u => {
+                const gender = u.gender || 'Chưa xác định';
+                counts[gender] = (counts[gender] || 0) + 1;
+            });
+            return Object.entries(counts).map(([gender, count]) => ({ gender, count }));
+        }
+
+        function calculateAgeDistribution(users) {
+            const groups = { 'Dưới 18': 0, '18-30': 0, '31-45': 0, '46-60': 0, 'Trên 60': 0, 'Chưa xác định': 0 };
+            users.forEach(u => {
+                const age = u.age || 0;
+                if (!u.age) groups['Chưa xác định']++;
+                else if (age < 18) groups['Dưới 18']++;
+                else if (age <= 30) groups['18-30']++;
+                else if (age <= 45) groups['31-45']++;
+                else if (age <= 60) groups['46-60']++;
+                else groups['Trên 60']++;
+            });
+            return Object.entries(groups).map(([age_group, count]) => ({ age_group, count })).filter(d => d.count > 0);
+        }
+
+        function calculateBmiDistribution(users) {
+            const categories = { 'Chưa có dữ liệu': 0, 'Thiếu cân (<18.5)': 0, 'Bình thường (18.5-24.9)': 0, 'Thừa cân (25-29.9)': 0, 'Béo phì (≥30)': 0 };
+            users.forEach(u => {
+                if (!u.height || !u.weight || u.height === 0) {
+                    categories['Chưa có dữ liệu']++;
+                } else {
+                    const bmi = u.weight / ((u.height / 100) ** 2);
+                    if (bmi < 18.5) categories['Thiếu cân (<18.5)']++;
+                    else if (bmi < 25) categories['Bình thường (18.5-24.9)']++;
+                    else if (bmi < 30) categories['Thừa cân (25-29.9)']++;
+                    else categories['Béo phì (≥30)']++;
+                }
+            });
+            return Object.entries(categories).map(([bmi_category, count]) => ({ bmi_category, count })).filter(d => d.count > 0);
+        }
+
+        function calculateLocationDistribution(users) {
+            const counts = {};
+            users.forEach(u => {
+                const loc = u.location || 'Chưa xác định';
+                counts[loc] = (counts[loc] || 0) + 1;
+            });
+            return Object.entries(counts)
+                .map(([location, count]) => ({ location, count }))
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 15);
+        }
+
+        function calculateDiseaseDistribution(users) {
+            const counts = {};
+            users.forEach(u => {
+                if (u.common_diseases) {
+                    u.common_diseases.split(',').forEach(d => {
+                        const disease = d.trim();
+                        if (disease) counts[disease] = (counts[disease] || 0) + 1;
+                    });
+                }
+            });
+            return Object.entries(counts)
+                .map(([disease, count]) => ({ disease, count }))
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 10);
+        }
+
+        function calculateAllergyDistribution(users) {
+            const counts = {};
+            users.forEach(u => {
+                if (u.allergies) {
+                    u.allergies.split(',').forEach(a => {
+                        const allergy = a.trim();
+                        if (allergy) counts[allergy] = (counts[allergy] || 0) + 1;
+                    });
+                }
+            });
+            return Object.entries(counts)
+                .map(([allergy, count]) => ({ allergy, count }))
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 10);
+        }
+
+        function updateChartsWithFilteredData(filteredUsers) {
+            // Check if we have any filters active
+            const location = document.getElementById('filterLocation').value;
+            const allGendersChecked = document.querySelectorAll('.filter-gender:checked').length === 3;
+            const allAgesChecked = document.querySelectorAll('.filter-age:checked').length === 5;
+            const search = document.getElementById('searchUser').value;
+            const isFiltered = location || !allGendersChecked || !allAgesChecked || search;
+
+            // Update gender chart
+            const genderData = calculateGenderDistribution(filteredUsers);
+            if (charts['genderChart']) {
+                charts['genderChart'].data.labels = genderData.map(d => d.gender);
+                charts['genderChart'].data.datasets[0].data = genderData.map(d => d.count);
+                charts['genderChart'].update();
+            }
+
+            // Update age chart
+            const ageData = calculateAgeDistribution(filteredUsers);
+            if (charts['ageChart']) {
+                charts['ageChart'].data.labels = ageData.map(d => d.age_group);
+                charts['ageChart'].data.datasets[0].data = ageData.map(d => d.count);
+                charts['ageChart'].update();
+            }
+
+            // Update BMI chart
+            const bmiData = calculateBmiDistribution(filteredUsers);
+            if (charts['bmiChart']) {
+                charts['bmiChart'].data.labels = bmiData.map(d => d.bmi_category);
+                charts['bmiChart'].data.datasets[0].data = bmiData.map(d => d.count);
+                charts['bmiChart'].update();
+            }
+
+            // Update province/location chart
+            const locationData = calculateLocationDistribution(filteredUsers);
+            if (charts['provinceChart']) {
+                charts['provinceChart'].data.labels = locationData.map(d => d.location);
+                charts['provinceChart'].data.datasets[0].data = locationData.map(d => d.count);
+                charts['provinceChart'].update();
+            }
+
+            // Update disease chart
+            const diseaseData = calculateDiseaseDistribution(filteredUsers);
+            if (charts['diseaseChart']) {
+                if (diseaseData.length === 0) {
+                    charts['diseaseChart'].data.labels = ['Chưa có dữ liệu'];
+                    charts['diseaseChart'].data.datasets[0].data = [0];
+                } else {
+                    charts['diseaseChart'].data.labels = diseaseData.map(d => d.disease);
+                    charts['diseaseChart'].data.datasets[0].data = diseaseData.map(d => d.count);
+                }
+                charts['diseaseChart'].update();
+            }
+
+            // Update chronic disease chart
+            if (charts['chronicDiseaseChart']) {
+                const chronicData = diseaseData.slice(0, 5);
+                if (chronicData.length === 0) {
+                    charts['chronicDiseaseChart'].data.labels = ['Chưa có dữ liệu'];
+                    charts['chronicDiseaseChart'].data.datasets[0].data = [0];
+                } else {
+                    charts['chronicDiseaseChart'].data.labels = chronicData.map(d => d.disease);
+                    charts['chronicDiseaseChart'].data.datasets[0].data = chronicData.map(d => d.count);
+                }
+                charts['chronicDiseaseChart'].update();
+            }
+
+            // Update allergy chart
+            const allergyData = calculateAllergyDistribution(filteredUsers);
+            if (charts['allergyChart']) {
+                if (allergyData.length === 0) {
+                    charts['allergyChart'].data.labels = ['Chưa có dữ liệu'];
+                    charts['allergyChart'].data.datasets[0].data = [0];
+                } else {
+                    charts['allergyChart'].data.labels = allergyData.map(d => d.allergy);
+                    charts['allergyChart'].data.datasets[0].data = allergyData.map(d => d.count);
+                }
+                charts['allergyChart'].update();
+            }
+
+            // Update risk chart with filtered location data
+            if (charts['riskChart']) {
+                const riskLocations = locationData.slice(0, 10);
+                charts['riskChart'].data.labels = riskLocations.map(l => l.location);
+                charts['riskChart'].data.datasets[0].data = riskLocations.map(l => l.count);
+                charts['riskChart'].data.datasets[1].data = riskLocations.map(() => Math.floor(Math.random() * 50) + 20);
+                charts['riskChart'].update();
+            }
+
+            // Update mini health stats
+            const withBmi = filteredUsers.filter(u => u.height && u.weight).length;
+            const withDiseases = filteredUsers.filter(u => u.common_diseases && u.common_diseases.trim()).length;
+            const withAllergies = filteredUsers.filter(u => u.allergies && u.allergies.trim()).length;
+            const coverage = filteredUsers.length > 0 ? Math.round((withBmi / filteredUsers.length) * 100) : 0;
+
+            document.getElementById('healthWithBmi').textContent = withBmi;
+            document.getElementById('healthWithDiseases').textContent = withDiseases;
+            document.getElementById('healthWithAllergies').textContent = withAllergies;
+            document.getElementById('healthCoverage').textContent = coverage + '%';
+
+            // Update header badge to show filtered status
+            if (isFiltered) {
+                document.getElementById('headerRecordCount').textContent = `| ${filteredUsers.length}/${allUsers.length} Hồ sơ (đã lọc)`;
+            } else {
+                document.getElementById('headerRecordCount').textContent = `| ${allUsers.length} Hồ sơ`;
+            }
+
+            // Update summary cards for filtered data
+            if (filteredUsers.length > 0) {
+                const avgAge = filteredUsers.reduce((sum, u) => sum + (u.age || 0), 0) / filteredUsers.filter(u => u.age).length;
+                const usersWithBmi = filteredUsers.filter(u => u.height && u.weight);
+                const avgBmi = usersWithBmi.length > 0
+                    ? usersWithBmi.reduce((sum, u) => sum + (u.weight / ((u.height / 100) ** 2)), 0) / usersWithBmi.length
+                    : 0;
+
+                document.getElementById('avgAge').textContent = avgAge ? avgAge.toFixed(1) : '--';
+                document.getElementById('avgBmi').textContent = avgBmi ? avgBmi.toFixed(1) : '--';
+                document.getElementById('totalUsers').textContent = isFiltered ? `${filteredUsers.length}` : allUsers.length;
+            }
         }
 
         function sortUsers(column) {
