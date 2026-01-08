@@ -102,6 +102,19 @@ async function initUserTables() {
       )
     `);
 
+    // Create password_reset_tokens table for forgot password feature
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS password_reset_tokens (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        phone_number VARCHAR(50) NOT NULL,
+        otp_code VARCHAR(6) NOT NULL,
+        expires_at TIMESTAMP NOT NULL,
+        used BOOLEAN DEFAULT FALSE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
     // Add image_url column to dim_benh if not exists
     await pool.query(`
       ALTER TABLE dim_benh ADD COLUMN IF NOT EXISTS image_url VARCHAR(500)
@@ -1620,6 +1633,156 @@ app.get('/api/admin/dashboard-stats', async (req, res) => {
   } catch (err) {
     console.error('Dashboard stats error:', err);
     res.status(500).json({ message: 'Lỗi server khi lấy thống kê dashboard' });
+  }
+});
+
+// ====== FORGOT PASSWORD APIs ======
+
+// Generate 6-digit OTP
+function generateOTP() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+// --- Request Password Reset (Send OTP) ---
+app.post('/api/forgot-password', async (req, res) => {
+  try {
+    const { phoneNumber } = req.body;
+
+    if (!phoneNumber) {
+      return res.status(400).json({ message: 'Vui lòng nhập số điện thoại' });
+    }
+
+    // Find user by phone number
+    const userResult = await pool.query(
+      'SELECT id, username, phone_number FROM users WHERE phone_number = $1',
+      [phoneNumber]
+    );
+
+    if (userResult.rows.length === 0) {
+      return res.status(404).json({ message: 'Không tìm thấy tài khoản với số điện thoại này' });
+    }
+
+    const user = userResult.rows[0];
+
+    // Generate OTP
+    const otpCode = generateOTP();
+    const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
+
+    // Invalidate any existing tokens for this user
+    await pool.query(
+      'UPDATE password_reset_tokens SET used = TRUE WHERE user_id = $1 AND used = FALSE',
+      [user.id]
+    );
+
+    // Save OTP to database
+    await pool.query(
+      'INSERT INTO password_reset_tokens (user_id, phone_number, otp_code, expires_at) VALUES ($1, $2, $3, $4)',
+      [user.id, phoneNumber, otpCode, expiresAt]
+    );
+
+    // For demo/learning project: return OTP in response (in production, send via SMS)
+    res.json({
+      message: 'Mã OTP đã được tạo',
+      username: user.username,
+      // DEMO MODE: Show OTP on screen (remove this in production)
+      demoOtp: otpCode,
+      demoMessage: '⚠️ Đây là môi trường demo. Mã OTP được hiển thị trực tiếp thay vì gửi SMS.',
+      expiresIn: '5 phút'
+    });
+
+  } catch (err) {
+    console.error('Forgot password error:', err);
+    res.status(500).json({ message: 'Lỗi server khi xử lý yêu cầu' });
+  }
+});
+
+// --- Verify OTP ---
+app.post('/api/verify-otp', async (req, res) => {
+  try {
+    const { phoneNumber, otpCode } = req.body;
+
+    if (!phoneNumber || !otpCode) {
+      return res.status(400).json({ message: 'Vui lòng nhập đầy đủ thông tin' });
+    }
+
+    // Find valid OTP
+    const tokenResult = await pool.query(
+      `SELECT t.*, u.username FROM password_reset_tokens t
+       JOIN users u ON t.user_id = u.id
+       WHERE t.phone_number = $1 
+       AND t.otp_code = $2 
+       AND t.used = FALSE 
+       AND t.expires_at > NOW()
+       ORDER BY t.created_at DESC
+       LIMIT 1`,
+      [phoneNumber, otpCode]
+    );
+
+    if (tokenResult.rows.length === 0) {
+      return res.status(400).json({ message: 'Mã OTP không hợp lệ hoặc đã hết hạn' });
+    }
+
+    const token = tokenResult.rows[0];
+
+    // Return success with token ID for the next step
+    res.json({
+      message: 'Xác thực OTP thành công',
+      tokenId: token.id,
+      username: token.username
+    });
+
+  } catch (err) {
+    console.error('Verify OTP error:', err);
+    res.status(500).json({ message: 'Lỗi server khi xác thực OTP' });
+  }
+});
+
+// --- Reset Password ---
+app.post('/api/reset-password', async (req, res) => {
+  try {
+    const { tokenId, newPassword } = req.body;
+
+    if (!tokenId || !newPassword) {
+      return res.status(400).json({ message: 'Vui lòng nhập đầy đủ thông tin' });
+    }
+
+    if (newPassword.length < 8) {
+      return res.status(400).json({ message: 'Mật khẩu phải có ít nhất 8 ký tự' });
+    }
+
+    // Find valid token
+    const tokenResult = await pool.query(
+      `SELECT * FROM password_reset_tokens 
+       WHERE id = $1 AND used = FALSE AND expires_at > NOW()`,
+      [tokenId]
+    );
+
+    if (tokenResult.rows.length === 0) {
+      return res.status(400).json({ message: 'Phiên đặt lại mật khẩu không hợp lệ hoặc đã hết hạn' });
+    }
+
+    const token = tokenResult.rows[0];
+
+    // Hash new password
+    const passwordHash = await bcrypt.hash(newPassword, 10);
+
+    // Update user password
+    await pool.query(
+      'UPDATE users SET password_hash = $1 WHERE id = $2',
+      [passwordHash, token.user_id]
+    );
+
+    // Mark token as used
+    await pool.query(
+      'UPDATE password_reset_tokens SET used = TRUE WHERE id = $1',
+      [tokenId]
+    );
+
+    res.json({ message: 'Đặt lại mật khẩu thành công! Bạn có thể đăng nhập với mật khẩu mới.' });
+
+  } catch (err) {
+    console.error('Reset password error:', err);
+    res.status(500).json({ message: 'Lỗi server khi đặt lại mật khẩu' });
   }
 });
 
