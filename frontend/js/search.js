@@ -1,7 +1,4 @@
-// =====================================================
-// SEARCH FUNCTIONALITY - PostgreSQL Version with Synonyms
-// Tìm kiếm Bệnh, Thảo Dược, Thuốc Tây với hỗ trợ từ đồng nghĩa
-// =====================================================
+
 
 (function () {
   'use strict';
@@ -13,9 +10,9 @@
 
   let searchTimeout = null;
 
-  // =====================================================
+  
   // SYNONYM DICTIONARY - Từ đồng nghĩa y tế Việt Nam
-  // =====================================================
+  
   const SYNONYMS = {
     // Triệu chứng đau
     'nhức đầu': ['đau đầu', 'đau nửa đầu', 'migraine', 'chóng mặt'],
