@@ -1,7 +1,4 @@
-/**
- * Script fix links trong các disease category pages
- * Chạy: node scripts/fix-category-links.js
- */
+
 
 const fs = require('fs');
 const path = require('path');
