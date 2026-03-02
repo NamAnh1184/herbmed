@@ -1,15 +1,9 @@
-/**
- * Chatbot Widget JavaScript
- * Handles UI interactions and API calls for the medical chatbot
- * REQUIRES LOGIN: User must be logged in to use chatbot
- */
+
 
 (function () {
     'use strict';
 
-    // ============================================================
     // CONFIGURATION
-    // ============================================================
 
     // Use HerbMedConfig if available, otherwise fallback to localhost
     const getChatbotBaseUrl = () => {
@@ -27,16 +21,16 @@
         requireLogin: true  // Set to false to disable login requirement
     };
 
-    // ============================================================
+
     // STATE
-    // ============================================================
+    
     let isOpen = false;
     let isLoading = false;
     let messages = [];
 
-    // ============================================================
+
     // AUTH FUNCTIONS
-    // ============================================================
+
     function isUserLoggedIn() {
         return !!localStorage.getItem('userId');
     }
@@ -60,9 +54,9 @@
         return basePath + 'pages/auth/dang-nhap.html';
     }
 
-    // ============================================================
+
     // CREATE WIDGET HTML
-    // ============================================================
+
     function createWidgetHTML() {
         const isLoggedIn = isUserLoggedIn();
         const username = getUsername();
@@ -166,9 +160,9 @@
         document.body.appendChild(container);
     }
 
-    // ============================================================
+
     // UI FUNCTIONS
-    // ============================================================
+
     function toggleChat() {
         const chatWindow = document.getElementById('chatbot-window');
         const toggle = document.getElementById('chatbot-toggle');
@@ -324,9 +318,9 @@
         input.disabled = loading;
     }
 
-    // ============================================================
+
     // API FUNCTIONS
-    // ============================================================
+
     async function sendMessage(message) {
         // Check login requirement
         if (CONFIG.requireLogin && !isUserLoggedIn()) {
@@ -400,9 +394,8 @@
         }
     }
 
-    // ============================================================
     // INPUT HANDLING
-    // ============================================================
+
     function autoResizeInput() {
         const input = document.getElementById('chatbot-input');
         input.style.height = 'auto';
@@ -417,9 +410,9 @@
         }
     }
 
-    // ============================================================
+
     // EVENT LISTENERS
-    // ============================================================
+
     function initEventListeners() {
         // Toggle button
         document.getElementById('chatbot-toggle').addEventListener('click', toggleChat);
@@ -488,9 +481,8 @@
         });
     }
 
-    // ============================================================
+
     // INITIALIZATION
-    // ============================================================
     function init() {
         // Create widget HTML
         createWidgetHTML();
