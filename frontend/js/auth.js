@@ -1,6 +1,5 @@
-// =====================================================
+
 // AUTH.JS - Authentication Logic
-// =====================================================
 
 // Helper: escape HTML to prevent XSS
 function escapeHTML(str = "") {
