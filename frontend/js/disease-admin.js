@@ -1,6 +1,4 @@
-// =====================================================
-// DISEASE-ADMIN.JS - Disease Management Page Logic
-// =====================================================
+
 
 let diseaseGroups = [];
 let searchTimeout = null;
