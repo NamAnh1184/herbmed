@@ -1,7 +1,7 @@
-// =====================================================
+
 // ADMIN-AUTH.JS - Admin Authorization Check
-// Kiểm tra quyền admin trước khi truy cập trang admin
-// =====================================================
+
+
 
 (function checkAdminAccess() {
     'use strict';
