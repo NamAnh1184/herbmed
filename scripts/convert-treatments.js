@@ -1,16 +1,13 @@
-/**
- * Script tự động chuyển đổi các file thuoc-*.html sang cấu trúc mới
- * Chạy: node scripts/convert-treatments.js
- */
+
 
 const fs = require('fs');
 const path = require('path');
 
-// Thư mục nguồn và đích
+// Source and destination directories
 const SOURCE_DIR = path.join(__dirname, '..');
 const DEST_DIR = path.join(__dirname, '..', 'frontend', 'pages', 'treatments');
 
-// Template header/navigation/footer cho các treatment pages
+// Template header/navigation/footer for treatment pages
 const TEMPLATE_HEAD = `<!DOCTYPE html>
 <html lang="vi">
 <head>
