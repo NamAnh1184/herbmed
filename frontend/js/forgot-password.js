@@ -1,6 +1,4 @@
-// =====================================================
-// FORGOT-PASSWORD.JS - Handle forgot password flow
-// =====================================================
+
 
 // API Configuration
 const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
