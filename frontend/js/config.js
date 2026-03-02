@@ -2,9 +2,9 @@
  * HerbMed API Configuration
  * Centralized configuration for all API endpoints
  * 
- * Khi deploy:
- * - Backend API: Đặt URL Railway backend vào HERBMED_API_URL
- * - Chatbot API: Đặt URL Railway chatbot vào HERBMED_CHATBOT_URL
+ * When deploy:
+ * - Backend API: URL Railway backend in HERBMED_API_URL
+ * - Chatbot API: URL Railway chatbot in HERBMED_CHATBOT_URL
  */
 
 (function () {
@@ -15,7 +15,7 @@
         window.location.hostname === '127.0.0.1';
 
     // API Configuration
-    // QUAN TRỌNG: Change URL when deploy to production
+    // IMPORTANT: Change URL when deploy to production
     const config = {
         // Backend API (Node.js/Express on Railway)
         // Local: http://localhost:3000/api
