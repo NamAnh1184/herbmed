@@ -1,16 +1,13 @@
-/**
- * Script tự động chuyển đổi các file file*.html (trang bệnh chi tiết) sang cấu trúc mới
- * Chạy: node scripts/convert-diseases.js
- */
+
 
 const fs = require('fs');
 const path = require('path');
 
-// Thư mục nguồn và đích
+// Source and destination directories
 const SOURCE_DIR = path.join(__dirname, '..');
 const DEST_DIR = path.join(__dirname, '..', 'frontend', 'pages', 'diseases');
 
-// Mapping tên file cũ -> tên file mới (slug tiếng Việt đẹp)
+// Mapping old filename -> new filename (nice Vietnamese slug)
 const FILE_MAPPING = {
     'filecamlanh.html': 'benh-cam-lanh.html',
     'filecum.html': 'benh-cum.html',
