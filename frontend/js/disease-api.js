@@ -1,16 +1,14 @@
-// =====================================================
-// DISEASE-API.JS - Disease Management API Client
-// =====================================================
+
 
 const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const API_BASE_URL = isLocalhost
     ? 'http://localhost:3000/api'
     : 'https://herbmed-production.up.railway.app/api';
 
-// ====== DISEASE (Bệnh) APIs ======
+// ====== DISEASE APIs ======
 
 /**
- * Lấy danh sách tất cả bệnh
+ * Disease List
  * @param {Object} options - { nhombenh_sk, search, limit, skip }
  */
 async function getDiseases(options = {}) {
@@ -37,8 +35,8 @@ async function getDiseases(options = {}) {
 }
 
 /**
- * Lấy chi tiết một bệnh theo ID hoặc benh_sk
- * @param {string|number} id - MongoDB _id hoặc benh_sk
+ * Disease ID or benh_sk
+ * @param {string|number} id - MongoDB _id or benh_sk
  */
 async function getDiseaseById(id) {
     try {
@@ -57,7 +55,7 @@ async function getDiseaseById(id) {
 }
 
 /**
- * Tạo bệnh mới
+ * Create new disease
  * @param {Object} diseaseData - { ten_benh, nhombenh_sk, trieu_chung }
  */
 async function createDisease(diseaseData) {
@@ -82,8 +80,8 @@ async function createDisease(diseaseData) {
 }
 
 /**
- * Cập nhật bệnh
- * @param {string|number} id - MongoDB _id hoặc benh_sk
+ * Update disease
+ * @param {string|number} id - MongoDB _id or benh_sk
  * @param {Object} diseaseData - { ten_benh, nhombenh_sk, trieu_chung }
  */
 async function updateDisease(id, diseaseData) {
@@ -108,8 +106,8 @@ async function updateDisease(id, diseaseData) {
 }
 
 /**
- * Xóa bệnh
- * @param {string|number} id - MongoDB _id hoặc benh_sk
+ * Delete disease
+ * @param {string|number} id - MongoDB _id or benh_sk
  */
 async function deleteDisease(id) {
     try {
@@ -130,10 +128,10 @@ async function deleteDisease(id) {
     }
 }
 
-// ====== DISEASE GROUP (Nhóm Bệnh) APIs ======
+// ====== DISEASE GROUP APIs ======
 
 /**
- * Lấy danh sách nhóm bệnh
+ * Disease group list
  */
 async function getDiseaseGroups() {
     try {
@@ -152,8 +150,8 @@ async function getDiseaseGroups() {
 }
 
 /**
- * Tạo nhóm bệnh mới
- * @param {string} nhom_benh - Tên nhóm bệnh
+ * Create new group disease
+ * @param {string} nhom_benh - Group disease name
  */
 async function createDiseaseGroup(nhom_benh) {
     try {
@@ -177,15 +175,15 @@ async function createDiseaseGroup(nhom_benh) {
 }
 
 // ====== EXPORT for use in other files ======
-// Nếu dùng module: export { getDiseases, getDiseaseById, createDisease, updateDisease, deleteDisease, getDiseaseGroups, createDiseaseGroup };
+// If use module: export { getDiseases, getDiseaseById, createDisease, updateDisease, deleteDisease, getDiseaseGroups, createDiseaseGroup };
 
 // Example usage:
 /*
-// Lấy danh sách bệnh
+// Disease List
 const diseases = await getDiseases({ search: 'cảm cúm', limit: 10 });
 console.log(diseases);
 
-// Tạo bệnh mới
+// New Disease
 const newDisease = await createDisease({
     ten_benh: 'Cảm cúm',
     nhombenh_sk: 1,
@@ -193,13 +191,13 @@ const newDisease = await createDisease({
 });
 console.log(newDisease);
 
-// Cập nhật bệnh
+// Update Disease
 const updated = await updateDisease(1, {
     ten_benh: 'Cảm cúm thông thường',
     trieu_chung: ['Sốt nhẹ', 'Ho khan', 'Nhức đầu', 'Mệt mỏi']
 });
 console.log(updated);
 
-// Xóa bệnh
+// Delete Disease
 await deleteDisease(1);
 */
