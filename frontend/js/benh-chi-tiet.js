@@ -1,7 +1,3 @@
-/**
- * benh-chi-tiet.js - JavaScript cho trang chi tiết bệnh
- * Fetch và hiển thị thông tin chi tiết bệnh, triệu chứng, thảo dược, thuốc tây
- */
 
 // API Base URL
 const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
