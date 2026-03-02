@@ -1,7 +1,4 @@
-/**
- * Mobile Menu Toggle Script
- * Handles the opening/closing of the navigation menu on mobile devices.
- */
+
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.nav__toggle');
     const navMenu = document.querySelector('.navbar'); // Using .navbar as the container
