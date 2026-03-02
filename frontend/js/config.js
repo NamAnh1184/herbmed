@@ -15,7 +15,7 @@
         window.location.hostname === '127.0.0.1';
 
     // API Configuration
-    // QUAN TRỌNG: Thay đổi các URL bên dưới khi deploy lên production
+    // QUAN TRỌNG: Change URL when deploy to production
     const config = {
         // Backend API (Node.js/Express on Railway)
         // Local: http://localhost:3000/api
