@@ -1,7 +1,4 @@
-/**
- * benh.js - JavaScript cho trang danh sách bệnh
- * Fetch dữ liệu từ API và render dynamic
- */
+
 
 // API Base URL
 const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
@@ -31,7 +28,7 @@ const categoryIcons = {
     'default': '🏥'
 };
 
-// Image mapping cho các bệnh - dựa trên tên bệnh (lowercase, không dấu để so sánh)
+// Image mapping for diseases - based on disease name (lowercase, no accents for comparison)
 const diseaseImages = {
     'cảm lạnh': '20200824_Cam-lanh-1.jpg',
     'cúm': 'benh_cum_nguyen_nhan_trieu_chung_dien_hinh_va_cach_dieu_tri_1_d61a184486.webp',
@@ -146,7 +143,7 @@ async function loadCategories() {
     }
 }
 
-// Load danh sách bệnh
+// Load disease list
 async function loadDiseases() {
     try {
         showLoading();
